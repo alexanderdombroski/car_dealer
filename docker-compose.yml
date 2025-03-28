@@ -1,0 +1,47 @@
+# For LOCAL development, not for render
+services:
+  database:
+    image: postgres:17-alpine
+    restart: always
+    networks:
+      - race-dealer
+    build: 
+      context: ./database
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "${DB_PORT}:${DB_PORT}"
+
+  web:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "${PORT}:${PORT}"
+    depends_on:
+      - database
+    environment:
+      - MODE=${MODE}
+      - PORT=${PORT}
+      - DB_NAME=${DB_NAME}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DATABASE_URL=${DB_URL}
+    volumes:
+      - .:/app
+      - /app/node_modules
+    networks:
+      - race-dealer
+
+volumes:
+  postgres-data:
+networks:
+  race-dealer:
+    driver: bridge

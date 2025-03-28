@@ -10,6 +10,10 @@ import path from "path";
 import { configureStaticPaths } from './src/utils/index.js';
 import { fileURLToPath } from 'url';
 import { testDatabase } from './src/models/index.js';
+import pool from './src/db/init.js';
+
+// TEST
+pool
 
 /**
  * Global Variables
@@ -17,7 +21,7 @@ import { testDatabase } from './src/models/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const mode = process.env.NODE_ENV;
+const mode = process.env.MODE;
 const port = process.env.PORT;
 
 /**
@@ -81,6 +85,6 @@ if (mode.includes('dev')) {
 
 // Start the Express server
 app.listen(port, async () => {
-    await testDatabase();
+    // await testDatabase();
     console.log(`Server running on http://127.0.0.1:${port}`);
 });
