@@ -41,13 +41,4 @@ const configureStaticPaths = (app) => {
     app.set('staticPaths', Array.from(registeredPaths));
 };
 
-/**
- * Returns the navigation menu.
- *
- * @returns {string} The navigation menu.
- */
-const getNav = () => {
-    return 'This feature is not implemented yet.';
-}
-
-export { configureStaticPaths, getNav };
+export { configureStaticPaths };

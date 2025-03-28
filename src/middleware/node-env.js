@@ -1,11 +1,11 @@
-import { getNav } from '../utils/index.js';
+import { getNav } from "../utils/templates.js";
 
 const port = process.env.PORT || 3000;
 const mode = process.env.MODE || 'production';
 
 const configureNodeEnvironment = async (req, res, next) => {
     res.locals.isDevMode = mode.includes('dev');
-    res.locals.navHTML = await getNav();
+    res.locals.navHTML = getNav();
     res.locals.port = port;
     res.locals.scripts = [];
     res.locals.styles = [];

@@ -1,4 +1,4 @@
-import * as ws from "ws"
+import * as ws from "ws";
 
 
 const mode = process.env.MODE;

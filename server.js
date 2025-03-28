@@ -13,9 +13,6 @@ import { testDatabase } from './src/models/index.js';
 import pool from './src/db/init.js';
 import setUpDevMode from './src/utils/devMode.js';
 
-// TEST
-pool
-
 /**
  * Global Variables
  */
@@ -64,7 +61,7 @@ app.use('/', homeRoute);
  */
 
 // When in development mode, start a WebSocket server for live reloading
-setUpDevMode()
+setUpDevMode();
 
 // Start the Express server
 app.listen(port, async () => {
