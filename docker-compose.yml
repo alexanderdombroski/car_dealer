@@ -34,11 +34,13 @@ services:
       - DB_USER=${DB_USER}
       - DB_PASSWORD=${DB_PASSWORD}
       - DATABASE_URL=${DB_URL}
+      - PNPM_SCRIPT=dev
     volumes:
       - .:/app
       - /app/node_modules
     networks:
       - race-dealer
+    command: ["pnpm", "${PNPM_SCRIPT}"]
 
 volumes:
   postgres-data:

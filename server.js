@@ -11,6 +11,7 @@ import { configureStaticPaths } from './src/utils/index.js';
 import { fileURLToPath } from 'url';
 import { testDatabase } from './src/models/index.js';
 import pool from './src/db/init.js';
+import setUpDevMode from './src/utils/devMode.js';
 
 // TEST
 pool
@@ -21,7 +22,6 @@ pool
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const mode = process.env.MODE;
 const port = process.env.PORT;
 
 /**
@@ -64,24 +64,7 @@ app.use('/', homeRoute);
  */
 
 // When in development mode, start a WebSocket server for live reloading
-if (mode.includes('dev')) {
-    const ws = await import('ws');
-
-    try {
-        const wsPort = parseInt(port) + 1;
-        const wsServer = new ws.WebSocketServer({ port: wsPort });
-
-        wsServer.on('listening', () => {
-            console.log(`WebSocket server is running on port ${wsPort}`);
-        });
-
-        wsServer.on('error', (error) => {
-            console.error('WebSocket server error:', error);
-        });
-    } catch (error) {
-        console.error('Failed to start WebSocket server:', error);
-    }
-}
+setUpDevMode()
 
 // Start the Express server
 app.listen(port, async () => {
