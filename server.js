@@ -1,17 +1,26 @@
 /**
  * Imports
  */
-import configNodeEnv from './src/middleware/node-env.js';
 import express from "express";
-import fileUploads from './src/middleware/file-uploads.js';
-import homeRoute from './src/routes/index.js';
-import layouts from './src/middleware/layouts.js';
 import path from "path";
-import { configureStaticPaths } from './src/utils/index.js';
 import { fileURLToPath } from 'url';
+
+// Global Middleware
+import configNodeEnv from './src/middleware/global/node-env.js';
+import fileUploads from './src/middleware/global/file-uploads.js';
+import layouts from './src/middleware/global/layouts.js';
+import { configureStaticPaths } from './src/utils/index.js';
+
+// Database
 import { testDatabase } from './src/models/index.js';
 import pool from './src/db/init.js';
+
+// Utils
 import setUpDevMode from './src/utils/devMode.js';
+
+// Route Imports
+import homeRoutes from './src/routes/index.js';
+import accountRoutes from './src/routes/account.js'
 
 /**
  * Global Variables
@@ -53,8 +62,8 @@ app.use(express.urlencoded({ extended: true }));
 /**
  * Routes
  */
-
-app.use('/', homeRoute);
+app.use('/', homeRoutes);
+app.use('/account', accountRoutes)
 
 /**
  * Start the server

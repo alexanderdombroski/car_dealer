@@ -1,4 +1,4 @@
-import { getNav } from "../utils/templates.js";
+import { getNav } from "../../utils/templates.js";
 
 const port = process.env.PORT || 3000;
 const mode = process.env.MODE || 'production';
