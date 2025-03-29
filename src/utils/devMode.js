@@ -1,14 +1,11 @@
 import * as ws from "ws";
 
-
 const mode = process.env.MODE;
-const port = process.env.PORT;
-
 
 export default function setUpDevMode() {
     if (mode.includes('dev')) {    
         try {
-            const wsPort = parseInt(port) + 1;
+            const wsPort = process.env.DEV_PORT;
 
             const wsServer = new ws.WebSocketServer({ port: wsPort });
 

@@ -23,11 +23,13 @@ services:
     restart: unless-stopped
     ports:
       - "${PORT}:${PORT}"
+      - "${DEV_PORT}:${DEV_PORT}"
     depends_on:
       - database
     environment:
       - MODE=${MODE}
       - PORT=${PORT}
+      - DEV_PORT=${DEV_PORT}
       - DB_NAME=${DB_NAME}
       - DB_HOST=${DB_HOST}
       - DB_PORT=${DB_PORT}

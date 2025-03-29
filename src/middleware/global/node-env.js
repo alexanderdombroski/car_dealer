@@ -1,6 +1,6 @@
 import { getNav } from "../../utils/templates.js";
 
-const port = process.env.PORT || 3000;
+const port = process.env.DEV_PORT || 3001;
 const mode = process.env.MODE || 'production';
 
 const configureNodeEnvironment = async (req, res, next) => {
@@ -15,7 +15,7 @@ const configureNodeEnvironment = async (req, res, next) => {
         // Add livereload script to the page
         res.locals.scripts.push(`
             <script>
-                const ws = new WebSocket('ws://127.0.0.1:${parseInt(port) + 1}');
+                const ws = new WebSocket('ws://127.0.0.1:${port}');
                 ws.onclose = () => {
                     setTimeout(() => location.reload(), 2000);
                 };
