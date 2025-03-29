@@ -26,5 +26,40 @@
     ],
     "description": "Creates express middleware with req and res params",
     "scope": "javascript"
+  },
+  "middleware": {
+    "prefix": "middleware",
+    "body": [
+      "/**",
+      " * ${1:Description}",
+      " * ",
+      " * @param {express.Request} req Express Request Object",
+      " * @param {express.Response} res Express Response Object",
+      " * @param {express.NextFunction} next Express Next Function",
+      " */",
+      "export const ${2:Middleware} = async (req, res, next) => {",
+      "    $0",
+      "};"
+    ],
+    "description": "Creates a middleware function with req, res, and next",
+    "scope": "javascript"
+  },
+  "Error Handling Middleware": {
+    "prefix": "middleware_err",
+    "body": [
+      "/**",
+      " * ${1:Description}",
+      " * ",
+      " * @param err Express Error Object (implicitly typed)",
+      " * @param {express.Request} req Express Request Object",
+      " * @param {express.Response} res Express Response Object",
+      " * @param {express.NextFunction} next Express Next Function",
+      " */",
+      "export const ${2:Middleware} = async (err, req, res, next) => {",
+      "    $0",
+      "};"
+    ],
+    "description": "Creates a middleware function with err, req, res, and next",
+    "scope": "javascript"
   }
 }
