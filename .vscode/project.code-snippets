@@ -1,0 +1,30 @@
+{
+  "Express Controller Docstring": {
+    "prefix": "doc_controller",
+    "body": [
+      "/**",
+      " * ${1:Description}",
+      " * ",
+      " * @param {express.Request} req Express Request Object",
+      " * @param {express.Response} res Express Response Object",
+      " */"
+    ],
+    "scope": "javascript"
+  },
+  "Express Controller": {
+    "prefix": "controller",
+    "body": [
+      "/**",
+      " * ${1:Description}",
+      " * ",
+      " * @param {express.Request} req Express Request Object",
+      " * @param {express.Response} res Express Response Object",
+      " */",
+      "export const ${2:Name}Controller = async (req, res) => {",
+      "    $0",
+      "};"
+    ],
+    "description": "Creates express middleware with req and res params",
+    "scope": "javascript"
+  }
+}
