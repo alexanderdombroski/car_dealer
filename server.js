@@ -10,6 +10,7 @@ import configNodeEnv from './src/middleware/global/node-env.js';
 import fileUploads from './src/middleware/global/file-uploads.js';
 import layouts from './src/middleware/global/layouts.js';
 import { configureStaticPaths } from './src/utils/index.js';
+import { saveSession, useSession } from "./src/middleware/global/sessions.js";
 
 // Database
 import { testDatabase } from './src/models/index.js';
@@ -34,6 +35,10 @@ const port = process.env.PORT;
  * Create and configure the Express server
  */
 const app = express();
+
+// Middleware to use sessions
+app.use(useSession);
+app.use(saveSession);
 
 // Configure the application based on environment settings
 app.use(configNodeEnv);

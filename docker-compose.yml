@@ -37,6 +37,7 @@ services:
       - DB_PASSWORD=${DB_PASSWORD}
       - DATABASE_URL=${DB_URL}
       - PNPM_SCRIPT=dev
+      - ENCRYPTION_KEY=${ENCRYPTION_KEY}
     volumes:
       - .:/app
       - /app/node_modules
