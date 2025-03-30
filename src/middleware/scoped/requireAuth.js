@@ -9,7 +9,7 @@ import { getPermissionLevel } from "../../models/account.js";
  * @param {express.NextFunction} next Express Next Function
  */
 export const requireLogin = async (req, res, next) => {
-    if (!req.session.userId) {
+    if (!req.session.user) {
         req.flash("error", "You must be logged in to access this page.");
         return res.redirect("/account/login");
     }
@@ -24,7 +24,7 @@ export const requireLogin = async (req, res, next) => {
  * @param {express.NextFunction} next Express Next Function
  */
 export const requireOwnerPrivilages = async (req, res, next) => {
-    if (req.session.userId && (await getPermissionLevel(req.session.userId)) > 1) {
+    if (req.session.user && req.session.user.user_id && (await getPermissionLevel(req.session.user.user_id)) > 1) {
         next();
         return;
     }
@@ -40,7 +40,7 @@ export const requireOwnerPrivilages = async (req, res, next) => {
  * @param {express.NextFunction} next Express Next Function
  */
 export const requireAdminPrivilages = async (req, res, next) => {
-    if (req.session.userId && (await getPermissionLevel(req.session.userId)) > 2) {
+    if (req.session.user && req.session.user.user_id && (await getPermissionLevel(req.session.user.user_id)) > 2) {
         next();
         return;
     }

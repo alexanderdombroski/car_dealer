@@ -1,12 +1,13 @@
 /**
  * Returns the navigation menu.
  *
+ * @param {boolean} isLoggedIn
  * @returns {string} The navigation menu.
  */
-const getNav = () => {
+const getNav = (isLoggedIn) => {
     const nav = `
         <nav>
-            <a href="/account/login">Log In</a>
+            ${isLoggedIn ? '<a href="/account/logout">Log Out</a>' : '<a href="/account/login">Log In</a>'}
         </nav>
     `;
     

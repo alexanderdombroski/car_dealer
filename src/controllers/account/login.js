@@ -1,5 +1,5 @@
 import express from "express";
-import { registerUser, userExists, verifyUserCredentials } from "../../models/account.js";
+import { userExists, verifyUserCredentials } from "../../models/account.js";
 
 /**
  * Renders login page
@@ -8,8 +8,9 @@ import { registerUser, userExists, verifyUserCredentials } from "../../models/ac
  * @param {express.Response} res Express Response Object
  */
 export const loginPageController = async (req, res) => {
-    
-    
+    if (res.locals.isLoggedIn) {
+        return res.redirect("/account");
+    }
     res.render("account/login", {title: "Login"})
 };
 
@@ -23,11 +24,7 @@ export const loginHandlerController = async (req, res) => {
     const user = await verifyUserCredentials(req.body.username, req.body.password);
     
     if (user) {
-        req.session.userId = user.user_id;
-        req.session.username = user.username;
-        req.session.email = user.email;
-        req.session.first_name = user.first_name
-        req.session.last_name = user.last_name
+        req.session.user = user;
 
         req.session.save((err) => {
             if (err) {
@@ -50,4 +47,20 @@ export const loginHandlerController = async (req, res) => {
     req.flash("error", "Invalid Username");
     res.redirect("/account/login");
     return;
+};
+
+/**
+ * Destroy the session to log the user out
+ * 
+ * @param {express.Request} req Express Request Object
+ * @param {express.Response} res Express Response Object
+ */
+export const logoutController = async (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            return res.status(500).json({ message: 'Logout failed' });
+        }
+        res.clearCookie('connect.sid');
+        return res.redirect("/account/login"); 
+    });
 };
