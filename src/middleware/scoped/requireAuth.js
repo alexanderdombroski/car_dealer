@@ -1,4 +1,5 @@
 import express from "express";
+import { getPermissionLevel } from "../../models/account.js";
 
 /**
  * Requires the user to be logged in
@@ -8,6 +9,10 @@ import express from "express";
  * @param {express.NextFunction} next Express Next Function
  */
 export const requireLogin = async (req, res, next) => {
+    if (!req.session.userId) {
+        req.flash("error", "You must be logged in to access this page.");
+        return res.redirect("/account/login");
+    }
     next();
 };
 
@@ -19,7 +24,12 @@ export const requireLogin = async (req, res, next) => {
  * @param {express.NextFunction} next Express Next Function
  */
 export const requireOwnerPrivilages = async (req, res, next) => {
-    next();
+    if (req.session.userId && (await getPermissionLevel(req.session.userId)) > 1) {
+        next();
+        return;
+    }
+    req.flash("error", "You must have owner permissions to access this page.");
+    return res.redirect("/account");
 };
 
 /**
@@ -30,5 +40,10 @@ export const requireOwnerPrivilages = async (req, res, next) => {
  * @param {express.NextFunction} next Express Next Function
  */
 export const requireAdminPrivilages = async (req, res, next) => {
-    next();
+    if (req.session.userId && (await getPermissionLevel(req.session.userId)) > 2) {
+        next();
+        return;
+    }
+    req.flash("error", "You must be an admin to access this page.");
+    return res.redirect("/account/login");
 };

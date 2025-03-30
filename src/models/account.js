@@ -68,10 +68,10 @@ export async function verifyUserCredentials(username, password) {
 
 /**
  * Returns the permission level of a user
- * 0 - Not logged in
- * 1 - Registered User
- * 2 - Owner
- * 3 - Admin
+ * 0: Not logged in
+ * 1: Registered User
+ * 2: Owner
+ * 3: Admin
  * 
  * @param {number} user_id 
  * @returns 
