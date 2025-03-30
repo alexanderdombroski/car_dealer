@@ -11,6 +11,7 @@ import fileUploads from './src/middleware/global/file-uploads.js';
 import layouts from './src/middleware/global/layouts.js';
 import { configureStaticPaths } from './src/utils/index.js';
 import { saveSession, useSession } from "./src/middleware/global/sessions.js";
+import flashMessages from "./src/middleware/global/flash-messages.js";
 
 // Database
 import { testDatabase } from './src/models/index.js';
@@ -39,6 +40,7 @@ const app = express();
 // Middleware to use sessions
 app.use(useSession);
 app.use(saveSession);
+app.use(flashMessages);
 
 // Configure the application based on environment settings
 app.use(configNodeEnv);
