@@ -38,7 +38,7 @@ erDiagram
         int model_id PK "AI UN NN"
         int make_id FK "UN NN"
         int category_id FK "UN NN"
-        varchar make "NN"
+        varchar model "NN"
     }
     VEHICLE_IMAGE {
         int image_id PK "AI UN NN"

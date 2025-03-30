@@ -73,7 +73,7 @@ CREATE TABLE public.model (
     model_id SERIAL PRIMARY KEY,
     make_id INTEGER NOT NULL REFERENCES public.make(make_id),
     category_id INTEGER NOT NULL REFERENCES public.vehicle_category(category_id),
-    make VARCHAR(100) NOT NULL
+    model VARCHAR(100) NOT NULL
 );
 
 -- Create Vehicle Table
@@ -158,7 +158,7 @@ INSERT INTO public.make (make) VALUES
 ('Cadillac');
 
 -- Populate Models
-INSERT INTO public.model (make_id, category_id, make) VALUES 
+INSERT INTO public.model (make_id, category_id, model) VALUES 
 (1, 1, 'Aventador'),  -- Lamborghini Sports Car
 (2, 5, 'Aerocar'),    -- Custom Concept Car
 (2, 5, 'Batmobile'),  -- Custom Concept Car
