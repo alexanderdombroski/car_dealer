@@ -7,5 +7,5 @@ import express from "express";
  * @param {express.Response} res Express Response Object
  */
 export const accountController = async (req, res) => {
-    res.render("account/index", {title: "Account"})
+    res.render("account/index", {title: "Account", user: req.session.user})
 };

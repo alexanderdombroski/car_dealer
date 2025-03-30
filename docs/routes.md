@@ -28,10 +28,12 @@
 
 ## Account Router (Authentication)
 
+- [X] GET - /account
 - [X] GET - /account/login
-- [ ] POST - /account/login
-- [ ] POST - /account/register
-- [ ] GET - /account
+- [X] GET - /account/logout
+- [X] POST - /account/login
+- [X] GET - /account/register
+- [X] POST - /account/register
 
 ## Account Router (User Dashboard)
 

@@ -47,7 +47,7 @@ export async function userExists(username) {
  */
 export async function verifyUserCredentials(username, password) {
     const query = `
-        SELECT user_id, username, email, password_hash, first_name, last_name, permission, created_at
+        SELECT user_id, username, email, password_hash, first_name, last_name, permission, created_at, updated_at
         FROM public.user
         WHERE username = $1;
     `;

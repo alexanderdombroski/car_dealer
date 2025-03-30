@@ -7,6 +7,7 @@
 const getNav = (isLoggedIn) => {
     const nav = `
         <nav>
+            ${isLoggedIn ? '<a href="/account">Account</a>' : ''}
             ${isLoggedIn ? '<a href="/account/logout">Log Out</a>' : '<a href="/account/login">Log In</a>'}
         </nav>
     `;
