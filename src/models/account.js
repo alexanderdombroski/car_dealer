@@ -35,5 +35,54 @@ export async function userExists(username) {
     `;
 
     const result = await pool.query(query, [username]);
-    return result.rows.length !== 0;
+    return result.rowCount !== 0;
+}
+
+/**
+ * Verifies if the provided username and password match a user in the database.
+ *
+ * @param {string} username - The username to check.
+ * @param {string} password - The plain text password to verify.
+ * @returns {Promise<object|undefined>} - A promise that resolves to the user object (excluding password_hash) if the credentials are valid.
+ */
+export async function verifyUserCredentials(username, password) {
+    const query = `
+        SELECT user_id, username, email, password_hash, first_name, last_name, permission, created_at
+        FROM public.user
+        WHERE username = $1;
+    `;
+
+    const result = await pool.query(query, [username]);
+
+    if (result.rowCount === 1) {
+        const user = result.rows[0];
+        const isPasswordValid = await argon2.verify(user.password_hash, password);
+
+        if (isPasswordValid) {
+            // Return user object without the password hash for security
+            const { password_hash, ...userWithoutHash } = user;
+            return userWithoutHash;
+        }
+    }
+}
+
+/**
+ * Returns the permission level of a user
+ * 0 - Not logged in
+ * 1 - Registered User
+ * 2 - Owner
+ * 3 - Admin
+ * 
+ * @param {number} user_id 
+ * @returns 
+ */
+export async function getPermissionLevel(user_id) {
+    const query = `
+        SELECT permission FROM public.user
+        WHERE user_id = $1;
+    `;
+
+    const result = await pool.query(query, [user_id]);
+    if (result.rowCount === 1) return result.rows[0].permission;
+    return 0;
 }
