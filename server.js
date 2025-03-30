@@ -23,6 +23,7 @@ import setUpDevMode from './src/utils/devMode.js';
 // Route Imports
 import homeRoutes from './src/routes/index.js';
 import accountRoutes from './src/routes/account.js'
+import vehicleRoutes from './src/routes/vehicle.js'
 
 /**
  * Global Variables
@@ -70,7 +71,8 @@ app.use(express.urlencoded({ extended: true }));
  * Routes
  */
 app.use('/', homeRoutes);
-app.use('/account', accountRoutes)
+app.use('/account', accountRoutes);
+app.use('/vehicle', vehicleRoutes);
 
 /**
  * Start the server
