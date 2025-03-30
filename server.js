@@ -13,10 +13,6 @@ import { configureStaticPaths } from './src/utils/index.js';
 import { saveSession, useSession } from "./src/middleware/global/sessions.js";
 import flashMessages from "./src/middleware/global/flash-messages.js";
 
-// Database
-import { testDatabase } from './src/models/index.js';
-import pool from './src/db/init.js';
-
 // Utils
 import setUpDevMode from './src/utils/devMode.js';
 

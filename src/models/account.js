@@ -1,5 +1,5 @@
-import pool from "../db/init.js";
 import argon2 from "argon2";
+import dbClient from "./index.js";
 
 /**
  * Saves a new user to the database
@@ -14,7 +14,7 @@ export async function registerUser(first_name, last_name, username, email, passw
         RETURNING user_id, username, email, first_name, last_name;
     `;
 
-    return await pool.query(query, [
+    return await dbClient.query(query, [
         first_name,
         last_name,
         username,
@@ -34,7 +34,7 @@ export async function userExists(username) {
         WHERE username = $1;
     `;
 
-    const result = await pool.query(query, [username]);
+    const result = await dbClient.query(query, [username]);
     return result.rowCount !== 0;
 }
 
@@ -52,7 +52,7 @@ export async function verifyUserCredentials(username, password) {
         WHERE username = $1;
     `;
 
-    const result = await pool.query(query, [username]);
+    const result = await dbClient.query(query, [username]);
 
     if (result.rowCount === 1) {
         const user = result.rows[0];
@@ -82,7 +82,7 @@ export async function getPermissionLevel(user_id) {
         WHERE user_id = $1;
     `;
 
-    const result = await pool.query(query, [user_id]);
+    const result = await dbClient.query(query, [user_id]);
     if (result.rowCount === 1) return result.rows[0].permission;
     return 0;
 }
