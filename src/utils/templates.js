@@ -1,3 +1,5 @@
+import { titleCase } from "./string.js";
+
 /**
  * Returns the navigation menu.
  *
@@ -15,4 +17,12 @@ const getNav = (isLoggedIn) => {
     return nav;
 };
 
-export { getNav };
+const getVehicleTypeNav = (types) => {
+    return `
+        <nav>
+            ${types.map(t => `<a href="/vehicle/type/${t.category_id}">${titleCase(t.name)}</a>`).join('')}
+        </nav>
+    `;
+}
+
+export { getNav, getVehicleTypeNav };

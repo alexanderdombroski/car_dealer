@@ -28,7 +28,7 @@ export async function getVehicles(category = null, vehicle_id = null, isFeatured
     const filters = []
     const placeholders = []
     if (category) {
-        filters.push("c.name = " + p())
+        filters.push("c.category_id = " + p())
         placeholders.push(category);
     };
     if (vehicle_id) {
@@ -46,4 +46,12 @@ export async function getVehicles(category = null, vehicle_id = null, isFeatured
     query += " GROUP BY v.vehicle_id, price, v.year, model, make, c.name;"
 
     return await dbClient.query(query, placeholders);
+}
+
+export async function getVehicleTypes() {
+    let query = `
+        SELECT * FROM public.vehicle_category;
+    `;
+
+    return dbClient.query(query);
 }
