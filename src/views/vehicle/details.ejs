@@ -1,6 +1,43 @@
-<h1><%= vehicle.make %> <%= vehicle.model %> <%= vehicle.year %></h1>
-<p><%= vehicle.desc %></p>
-<p>$<%= vehicle.price %></p>
-<% for( let i = 0; i < vehicle.image_paths.length; i++ ) { %>
-    <img src="<%= vehicle.image_paths[i] %>" alt="<%= vehicle.alt_texts[i] %>">
-<% } %>
+<section>
+    <h1><%= vehicle.make %> <%= vehicle.model %> <%= vehicle.year %></h1>
+    <p><%= vehicle.desc %></p>
+    <p>$<%= vehicle.price %></p>
+    <% for( let i = 0; i < vehicle.image_paths.length; i++ ) { %>
+        <img src="<%= vehicle.image_paths[i] %>" alt="<%= vehicle.alt_texts[i] %>">
+    <% } %>
+</section>
+<section>
+    <% if (isLoggedIn) { %>
+        <h2>Submit Your Review</h2>
+        
+        <form action="/vehicle/<%= vehicle.vehicle_id %>/review" method="POST">
+            <label for="message">Your Review:</label>
+            <textarea id="message" name="message" rows="5" cols="50" required></textarea>
+        
+            <button type="submit">Submit Review</button>
+        </form>
+    <% } else { %>
+        <p>To leave a review, <a href="/account/login">log in</a></p>
+    <% } %>
+</section>
+<section>
+    <% reviews.forEach(review => { %>
+        <p><%= review.first_name %> <%= review.last_name %> - <%- caledarWithTimeFormat(review.created_at) %></p>
+        <p><%= review.message %></p>
+        <% if (review.user_id === userId) { %>
+            <details>
+                <summary>Edit Message</summary>
+                <form action="/vehicle/<%= review.vehicle_id %>/review/<%= review.review_id %>" method="post">
+                    <input type="hidden" name="_method" value="put">
+                    <label for="message">Updated Message:</label>
+                    <textarea name="message" id="message" required><%= review.message %></textarea>
+                    <button type="submit">Update</button>
+                </form>
+                <form action="/vehicle/<%= review.vehicle_id %>/review/<%= review.review_id %>" method="post">
+                    <input type="hidden" name="_method" value="delete">
+                    <button type="submit">Delete</button>
+                </form>
+            </details>
+        <% } %>
+    <% }) %>
+</section>

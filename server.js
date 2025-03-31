@@ -12,6 +12,7 @@ import layouts from './src/middleware/global/layouts.js';
 import { configureStaticPaths } from './src/utils/index.js';
 import { saveSession, useSession } from "./src/middleware/global/sessions.js";
 import flashMessages from "./src/middleware/global/flash-messages.js";
+import postMethodOverride from "./src/middleware/global/method-override.js";
 
 // Utils
 import setUpDevMode from './src/utils/devMode.js';
@@ -62,6 +63,9 @@ app.use(express.json());
 
 // Middleware to parse URL-encoded form data (like from a standard HTML form)
 app.use(express.urlencoded({ extended: true }));
+
+// Method Overriding from POST -> PUT, DELETE, or PATCH
+app.use(postMethodOverride);
 
 /**
  * Routes

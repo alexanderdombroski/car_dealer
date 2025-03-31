@@ -74,7 +74,7 @@ export async function verifyUserCredentials(username, password) {
  * 3: Admin
  * 
  * @param {number} user_id 
- * @returns 
+ * @returns promise<int|undefinied>
  */
 export async function getPermissionLevel(user_id) {
     const query = `

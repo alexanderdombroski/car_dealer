@@ -1,4 +1,5 @@
 import express from "express";
+import { calendarFormat } from "../../utils/date.js";
 
 /**
  * Renders Account Page
@@ -7,5 +8,5 @@ import express from "express";
  * @param {express.Response} res Express Response Object
  */
 export const accountController = async (req, res) => {
-    res.render("account/index", {title: "Account", user: req.session.user})
+    res.render("account/index", {title: "Account", user: req.session.user, calendarFormat})
 };

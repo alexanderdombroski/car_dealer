@@ -1,8 +1,11 @@
 ## Vehicle Router
 
-- [ ] GET - /vehicle/featured
-- [ ] GET - /vehicle/type
-- [ ] GET - /vehicle/:id
+- [X] GET - /vehicle
+- [X] GET - /vehicle/:id
+- [X] GET - /vehicle/type/:id
+- [ ] POST - /vehicle/:id
+- [ ] PUT - /vehicle/:id
+- [ ] DELETE - /vehicle/:id
 
 ## Category Router
 
@@ -19,10 +22,9 @@
 
 ## Review Router
 
-- [ ] GET - /vehicle/:id/review
-- [ ] POST - /vehicle/:id/review
-- [ ] PUT - /vehicle/:id/review/:rid
-- [ ] DELETE - /vehicle/:id/review/:rid
+- [X] POST - /vehicle/:id/review
+- [X] PUT - /vehicle/:id/review/:rid
+- [X] DELETE - /vehicle/:id/review/:rid
 
 ## Account Router (Authentication)
 

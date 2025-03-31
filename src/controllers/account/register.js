@@ -1,3 +1,6 @@
+import express from "express";
+import { registerUser, userExists } from "../../models/account.js";
+
 /**
  * Render Register Page
  * 
