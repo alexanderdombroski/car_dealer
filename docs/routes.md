@@ -20,11 +20,9 @@
 ## Review Router
 
 - [ ] GET - /vehicle/:id/review
-- [ ] POST - /review
-- [ ] PUT - /review/:id
-- [ ] DELETE - /review/:id
-- [ ] PUT - /vehicle/review/:id
-- [ ] DELETE - /vehicle/review/:id
+- [ ] POST - /vehicle/:id/review
+- [ ] PUT - /vehicle/:id/review/:rid
+- [ ] DELETE - /vehicle/:id/review/:rid
 
 ## Account Router (Authentication)
 

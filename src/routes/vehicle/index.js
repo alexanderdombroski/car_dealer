@@ -1,5 +1,6 @@
 import { Router } from 'express';
-import { vehicleDetailsPageController, vehiclesPageController } from '../controllers/vehicle/index.js';
+import { vehicleDetailsPageController, vehiclesPageController } from '../../controllers/vehicle/index.js';
+import { requireLogin } from '../../middleware/scoped/requireAuth.js';
 
 const router = Router();
  
@@ -9,7 +10,6 @@ router.get('/type/:id', vehiclesPageController)
 
 // Vehicle Details
 router.get('/:id', vehicleDetailsPageController);
-
 
 
 export default router;

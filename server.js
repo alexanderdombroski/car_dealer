@@ -19,7 +19,7 @@ import setUpDevMode from './src/utils/devMode.js';
 // Route Imports
 import homeRoutes from './src/routes/index.js';
 import accountRoutes from './src/routes/account.js'
-import vehicleRoutes from './src/routes/vehicle.js'
+import vehicleRoutes from './src/routes/vehicle/index.js'
 
 /**
  * Global Variables
