@@ -1,10 +1,5 @@
 <h1>Current Listings</h1>
 
-<% vehicles.forEach(v => { %>
-    <a href="/vehicle/<%= v.vehicle_id %>">
-        <figure>
-            <img src="<%= v.image_paths[0] %>" alt="<%= v.alt_texts[0] %>">
-        </figure>
-        <figcaption><%= v.make %> <%= v.model %> <%= v.year %> - <%= v.price %></figcaption>
-    </a>
+<% vehicles.forEach(vehicle => { %>
+    <%- include('../partials/vehicle-card.ejs', { vehicle }) %>
 <% }) %>

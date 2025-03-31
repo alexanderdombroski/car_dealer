@@ -6,12 +6,14 @@ import dbClient from "./index.js";
  * 
  * @param {string|null} [category=null] 
  * @param {int|null} [vehicle_id=null] 
+ * @param {bool|null} isFeatured 
  */
-export async function getVehicles(category = null, vehicle_id = null) {
+export async function getVehicles(category = null, vehicle_id = null, isFeatured = null) {
     let query = `
         SELECT
             v.vehicle_id, price, user_id,
             year, make, model, 
+            is_featured, is_sold,
             c.name AS category, "desc",
             ARRAY_AGG(i.image_path) AS image_paths,
             ARRAY_AGG(i.alt_text) AS alt_texts
@@ -33,8 +35,11 @@ export async function getVehicles(category = null, vehicle_id = null) {
         filters.push("v.vehicle_id = " + p());
         placeholders.push(vehicle_id);
     }
+    if (isFeatured !== null) {
+        filters.push("is_featured = " + p());
+        placeholders.push(isFeatured);
+    }
     if (filters.length !== 0) {
-        console.log("WHERE " + filters.join(" AND "));
         query += "WHERE " + filters.join(" AND ");
     }
 
