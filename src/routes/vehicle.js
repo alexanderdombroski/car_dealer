@@ -5,9 +5,10 @@ const router = Router();
  
 // Vehicle Listings
 router.get('/', vehiclesPageController);
+router.get('/type/:id', vehiclesPageController)
 
 // Vehicle Details
-router.get('/details/:id', vehicleDetailsPageController);
+router.get('/:id', vehicleDetailsPageController);
 
 
 

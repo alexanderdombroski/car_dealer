@@ -1,0 +1,6 @@
+<h1><%= vehicle.make %> <%= vehicle.model %> <%= vehicle.year %></h1>
+<p><%= vehicle.desc %></p>
+<p>$<%= vehicle.price %></p>
+<% for( let i = 0; i < vehicle.image_paths.length; i++ ) { %>
+    <img src="<%= vehicle.image_paths[i] %>" alt="<%= vehicle.alt_texts[i] %>">
+<% } %>
