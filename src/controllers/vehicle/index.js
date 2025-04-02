@@ -23,6 +23,6 @@ export const vehiclesPageController = async (req, res) => {
 export const vehicleDetailsPageController = async (req, res) => {
     const vehicle = (await getVehicles(null, req.params.id)).rows[0];
     const reviews = (await reviewsList(req.params.id)).rows;
-    res.render("vehicle/details", {title: "Listing Details", vehicle, reviews, caledarWithTimeFormat, isLoggedIn: res.locals.isLoggedIn, userId: req.session.user?.user_id});
+    res.render("vehicle/details", {title: "Listing Details", vehicle, reviews, caledarWithTimeFormat, isLoggedIn: res.locals.isLoggedIn, user: req.session.user});
 };
 

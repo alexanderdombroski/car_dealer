@@ -21,23 +21,6 @@
     <% } %>
 </section>
 <section>
-    <% reviews.forEach(review => { %>
-        <p><%= review.first_name %> <%= review.last_name %> - <%- caledarWithTimeFormat(review.created_at) %></p>
-        <p><%= review.message %></p>
-        <% if (review.user_id === userId) { %>
-            <details>
-                <summary>Edit Message</summary>
-                <form action="/vehicle/<%= review.vehicle_id %>/review/<%= review.review_id %>" method="post">
-                    <input type="hidden" name="_method" value="put">
-                    <label for="message">Updated Message:</label>
-                    <textarea name="message" id="message" required><%= review.message %></textarea>
-                    <button type="submit">Update</button>
-                </form>
-                <form action="/vehicle/<%= review.vehicle_id %>/review/<%= review.review_id %>" method="post">
-                    <input type="hidden" name="_method" value="delete">
-                    <button type="submit">Delete</button>
-                </form>
-            </details>
-        <% } %>
-    <% }) %>
+    <h2>Popular Reviews</h2>
+    <%- include('../partials/reviews.ejs') %>
 </section>

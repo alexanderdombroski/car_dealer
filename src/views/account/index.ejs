@@ -1,5 +1,12 @@
 <h1>Account Overview</h1>
-<p>Welcome, <%= user.first_name %> <%= user.last_name %></p>
-<p>Username: <%= user.username %></p>
-<p>Date joined: <%= calendarFormat(user.created_at) %></p>
-<p>Account Last Updated: <%= calendarFormat(user.updated_at) %></p>
+<section>
+    <h2>Account Information</h2>
+    <p>Welcome, <%= user.first_name %> <%= user.last_name %></p>
+    <p>Username: <%= user.username %></p>
+    <p>Date joined: <%= calendarFormat(user.created_at) %></p>
+    <p>Account Last Updated: <%= calendarFormat(user.updated_at) %></p>
+</section>
+<section>
+    <h2>Your Review History</h2>
+    <%- include('../partials/reviews.ejs') %>
+</section>

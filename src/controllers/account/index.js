@@ -1,5 +1,6 @@
 import express from "express";
-import { calendarFormat } from "../../utils/date.js";
+import { caledarWithTimeFormat, calendarFormat } from "../../utils/date.js";
+import { reviewsListUser } from "../../models/review.js";
 
 /**
  * Renders Account Page
@@ -8,5 +9,6 @@ import { calendarFormat } from "../../utils/date.js";
  * @param {express.Response} res Express Response Object
  */
 export const accountController = async (req, res) => {
-    res.render("account/index", {title: "Account", user: req.session.user, calendarFormat})
+    const reviews = await reviewsListUser(req.session.user.user_id);
+    res.render("account/index", {title: "Account", user: req.session.user, calendarFormat, caledarWithTimeFormat, reviews});
 };

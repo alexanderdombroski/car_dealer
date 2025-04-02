@@ -58,3 +58,16 @@ export async function reviewUserId(reviewId) {
     `;
     return (await dbClient.query(query, [reviewId])).rows[0].user_id;
 }
+
+/**
+ * Get's a user's reviews
+ */
+export async function reviewsListUser(userId) {
+    const query = `
+        SELECT first_name, last_name, message, r.created_at, r.updated_at, u.user_id, r.review_id, r.vehicle_id
+        FROM public.review AS r
+        JOIN public.user AS u ON u.user_id = r.user_id
+        WHERE u.user_id = $1; 
+    `;
+    return (await dbClient.query(query, [userId])).rows;
+}
