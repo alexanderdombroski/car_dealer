@@ -178,7 +178,8 @@ INSERT INTO public.model (make_id, category_id, model) VALUES
 -- Populate Users
 INSERT INTO public."user" (username, email, password_hash, permission, first_name, last_name) VALUES 
 ('johndoe', 'john.doe@example.com', '$2b$10$randomhashhere', 1, 'John', 'Doe'),
-('janedoe', 'jane.doe@example.com', '$2b$10$anotherhashhere', 2, 'Jane', 'Doe');
+('janedoe', 'jane.doe@example.com', '$2b$10$anotherhashhere', 2, 'Jane', 'Doe')
+('admin123', 'admin@example.com', '$argon2id$v=19$m=65536,t=3,p=4$sGJCsB84+LsoffOXKHLElg$81FOP7QAB9jx7TnMayq2l+25fanlk0ESkH30djU6BMg', 3, 'Admin', 'Of Power');
 
 -- Populate Vehicles
 INSERT INTO public.vehicle (user_id, model_id, year, mileage, "desc", price, is_featured, is_sold) VALUES 
