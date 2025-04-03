@@ -1,0 +1,20 @@
+
+<section>
+    <h1>Submit an Inquiry</h1>
+    <p>Send a message to <%= owner.first_name %> <%= owner.last_name %>, the owner of this vehicle.</p>
+    <%- include('../partials/vehicle-card') %>
+    <form action="/vehicle/<%= vehicle.vehicle_id %>/inquiry" method="post">
+        <label for="subject">Subject</label>
+        <input type="text" name="subject" id="subject" required></input>
+        <label for="message">Message</label>
+        <textarea name="message" id="message" required></textarea>
+        <input type="submit">
+    </form>
+    <h2>Things you could include:</h2>
+    <ul>
+        <li>Questions about the vehicle</li>
+        <li>Request for a test drive</li>
+        <li>Questions about payment options</li>
+        <li>Questinos about availability and next steps</li>
+    </ul>
+</section>

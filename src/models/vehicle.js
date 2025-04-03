@@ -12,7 +12,7 @@ export async function getVehicles(category = null, vehicle_id = null, isFeatured
     let query = `
         SELECT
             v.vehicle_id, price, user_id,
-            year, make, model, 
+            year, make, model, mileage,
             is_featured, is_sold,
             c.name AS category, "desc",
             ARRAY_AGG(i.image_path) AS image_paths,
@@ -45,7 +45,7 @@ export async function getVehicles(category = null, vehicle_id = null, isFeatured
 
     query += " GROUP BY v.vehicle_id, price, v.year, model, make, c.name;"
 
-    return await dbClient.query(query, placeholders);
+    return (await dbClient.query(query, placeholders)).rows;
 }
 
 export async function getVehicleTypes() {
@@ -53,5 +53,5 @@ export async function getVehicleTypes() {
         SELECT * FROM public.vehicle_category;
     `;
 
-    return dbClient.query(query);
+    return (await dbClient.query(query)).rows;
 }

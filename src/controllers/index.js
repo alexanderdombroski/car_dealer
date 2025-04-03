@@ -9,8 +9,8 @@ import { getVehicleTypeNav } from "../utils/templates.js";
  * @param {express.Response} res 
  */
 export const homeController = async (_req, res) => {
-    const vehicles = (await getVehicles(null, null, true)).rows;
-    const types = (await getVehicleTypes()).rows;
+    const vehicles = await getVehicles(null, null, true);
+    const types = await getVehicleTypes();
     
     const vehicleTypeNav = getVehicleTypeNav(types);
     res.render('index', { title: 'Home Page', vehicles, vehicleTypeNav });

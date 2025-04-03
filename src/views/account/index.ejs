@@ -6,6 +6,18 @@
     <p>Date joined: <%= calendarFormat(user.created_at) %></p>
     <p>Account Last Updated: <%= calendarFormat(user.updated_at) %></p>
 </section>
+<% if (inquiries.length > 0) { %>
+    <section>
+        <h2>Your Inquiries</h2>
+        <% inquiries.forEach(inquiry => { %>
+            <article>
+                <h3><%= inquiry.subject %> - <%= calendarFormat(inquiry.created_at) %></h3>
+                <p><%= inquiry.message %></p>
+                <a href="/vehicle/<%= inquiry.vehicle_id %>">See Vehicle</a>
+            </article>
+        <% }) %>
+    </section>
+<% } %>
 <section>
     <h2>Your Review History</h2>
     <%- include('../partials/reviews.ejs') %>

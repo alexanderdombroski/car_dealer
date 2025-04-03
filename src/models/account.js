@@ -66,6 +66,16 @@ export async function verifyUserCredentials(username, password) {
     }
 }
 
+export async function userDetails(userId) {
+    const query = `
+        SELECT first_name, last_name, email
+        FROM public.user
+        WHERE user_id = $1;
+    `;
+
+    return (await dbClient.query(query, [userId])).rows[0];
+}
+
 /**
  * Returns the permission level of a user
  * 0: Not logged in
