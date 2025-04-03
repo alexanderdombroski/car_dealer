@@ -82,6 +82,7 @@ CREATE TABLE public.vehicle (
     user_id INTEGER NOT NULL REFERENCES public."user"(user_id),
     model_id INTEGER NOT NULL REFERENCES public.model(model_id),
     year INTEGER NOT NULL,
+    mileage INTEGER NOT NULL,
     "desc" TEXT,
     price NUMERIC NOT NULL,
     is_featured BOOLEAN NOT NULL,
@@ -180,21 +181,21 @@ INSERT INTO public."user" (username, email, password_hash, permission, first_nam
 ('janedoe', 'jane.doe@example.com', '$2b$10$anotherhashhere', 2, 'Jane', 'Doe');
 
 -- Populate Vehicles
-INSERT INTO public.vehicle (user_id, model_id, year, "desc", price, is_featured, is_sold) VALUES 
-(1, 1, 2020, 'Sleek Lamborghini Aventador in pristine condition', 450000.00, true, false),
-(1, 2, 1949, 'Unique flying car concept', 250000.00, false, false),
-(2, 3, 1989, 'Iconic Batmobile replica', 750000.00, true, false),
-(1, 4, 2019, 'Powerful Chevy Camaro SS', 45000.00, false, false),
-(2, 5, 2011, 'Classic Police Interceptor', 15000.00, false, false),
-(1, 6, 1985, 'Time-traveling DeLorean', 125000.00, true, false),
-(2, 7, 2005, 'Fully equipped Fire Truck', 85000.00, false, false),
-(1, 8, 2022, 'Luxurious Cadillac Escalade', 85000.00, true, false),
-(2, 9, 2007, 'Rugged Military Hummer', 65000.00, false, false),
-(1, 10, 1927, 'Vintage Ford Model T', 35000.00, false, false),
-(2, 11, 2010, 'Massive Monster Truck', 95000.00, true, false),
-(1, 12, 1970, 'Mystery solving van', 45000.00, false, false),
-(2, 13, 2015, 'Custom Surfer Van', 35000.00, false, false),
-(1, 14, 2019, 'Robust Jeep Wrangler', 42000.00, false, false);
+INSERT INTO public.vehicle (user_id, model_id, year, mileage, "desc", price, is_featured, is_sold) VALUES 
+(1, 1, 2020, 24000, 'Sleek Lamborghini Aventador in pristine condition', 450000.00, true, false),
+(1, 2, 1949, 26540, 'Unique flying car concept', 250000.00, false, false),
+(2, 3, 1989, 11111, 'Iconic Batmobile replica', 750000.00, true, false),
+(1, 4, 2019, 80000, 'Powerful Chevy Camaro SS', 45000.00, false, false),
+(2, 5, 2011, 120000, 'Classic Police Interceptor', 15000.00, false, false),
+(1, 6, 1985, 30000, 'Time-traveling DeLorean', 125000.00, true, false),
+(2, 7, 2005, 65000, 'Fully equipped Fire Truck', 85000.00, false, false),
+(1, 8, 2022, 10000, 'Luxurious Cadillac Escalade', 85000.00, true, false),
+(2, 9, 2007, 34500, 'Rugged Military Hummer', 65000.00, false, false),
+(1, 10, 1927, 204000, 'Vintage Ford Model T', 35000.00, false, false),
+(2, 11, 2010, 40000, 'Massive Monster Truck', 95000.00, true, false),
+(1, 12, 1970, 546060, 'Mystery solving van', 45000.00, false, false),
+(2, 13, 2015, 156000, 'Custom Surfer Van', 35000.00, false, false),
+(1, 14, 2019, 95000, 'Robust Jeep Wrangler', 42000.00, false, false);
 
 -- Populate Vehicle Images
 INSERT INTO public.vehicle_image (vehicle_id, image_path, alt_text) VALUES 

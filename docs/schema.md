@@ -23,6 +23,7 @@ erDiagram
         int user_id FK "UN NN"
         int model_id FK "UN NN"
         int year "UN NN"
+        int mileage "UN NN"
         text desc
         numeric price "UN NN"
         bool is_featured "NN"
