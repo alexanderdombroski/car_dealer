@@ -1,4 +1,4 @@
-import { getPermissionLevel } from "../../models/account.js";
+import express from "express";
 import { reviewUserId } from "../../models/review.js";
 
 /**
@@ -10,9 +10,8 @@ import { reviewUserId } from "../../models/review.js";
  */
 const authorizeReviewAction = async (req, res, next) => {
     const reviewOwner = await reviewUserId(req.params.rid);
-    const permissionLevel = await getPermissionLevel(req.session.user.user_id);
     
-    if (req.session.user.user_id === reviewOwner || permissionLevel > 1) {
+    if (req.session.user.user_id === reviewOwner || req.session.user.permission > 1) {
         return next();
     }
     
