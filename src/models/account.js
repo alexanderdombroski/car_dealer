@@ -83,16 +83,32 @@ export async function userDetails(userId) {
  * 2: Owner
  * 3: Admin
  * 
- * @param {number} user_id 
+ * @param {number} userId 
  * @returns promise<int|undefinied>
  */
-export async function getPermissionLevel(user_id) {
+export async function getPermissionLevel(userId) {
     const query = `
         SELECT permission FROM public.user
         WHERE user_id = $1;
     `;
 
-    const result = await dbClient.query(query, [user_id]);
+    const result = await dbClient.query(query, [userId]);
     if (result.rowCount === 1) return result.rows[0].permission;
     return 0;
+}
+
+/**
+ * Updates a users email
+ * 
+ * @param {number} userId 
+ * @param {string} email 
+ */
+export async function accountEmailUpdate(userId, email) {
+    const query = `
+        UPDATE public.user
+        SET email = $2
+        WHERE user_id = $1;
+    `;
+
+    return await dbClient.query(query, [userId, email]);
 }

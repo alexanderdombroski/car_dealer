@@ -3,6 +3,16 @@
     <h2>Account Information</h2>
     <p>Welcome, <%= user.first_name %> <%= user.last_name %></p>
     <p>Username: <%= user.username %></p>
+    <p>Email: <%= user.email %></p>
+    <details>
+        <summary>Update Email</summary>
+        <form action="/account" method="post">
+            <input type="hidden" name="_method" value="patch">
+            <label for="email">Updated Email:</label>
+            <input type="email" name="email" id="email" required></input>
+            <input type="submit">
+        </form>
+    </details>
     <p>Date joined: <%= calendarFormat(user.created_at) %></p>
     <p>Account Last Updated: <%= calendarFormat(user.updated_at) %></p>
 </section>
