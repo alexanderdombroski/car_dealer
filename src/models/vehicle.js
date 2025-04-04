@@ -141,3 +141,35 @@ export async function vehicleNewImages(vehicleId, imagePaths) {
 
     return await dbClient.query(query, [vehicleId, ...imagePaths])
 }
+
+export async function vehicleUpdate(vehicleId, mileage, price, desc, isFeatured, isPurchased) {
+    const query = `
+        UPDATE public.vehicle SET 
+            mileage = $2,
+            price = $3,
+            "desc" = $4,
+            is_featured = $5,
+            is_sold = $6,
+            updated_at = NOW()
+        WHERE vehicle_id = $1;
+    `;
+
+    return await dbClient.query(query, [vehicleId, mileage, price, desc, isFeatured, isPurchased])
+}
+
+export async function vehicleDelete(vehicleId) {
+    const query = `
+        DELETE FROM public.vehicle
+        WHERE vehicle_id = $1;
+    `;
+
+    return await dbClient.query(query, [vehicleId]);
+}
+
+export async function vehicleImages(vehicleId) {
+    const query = `
+        SELECT image_path FROM public.vehicle_image
+        WHERE vehicle_id = $1;
+    `;
+    return (await dbClient.query(query, [vehicleId])).rows;
+}

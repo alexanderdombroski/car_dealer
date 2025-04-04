@@ -3,6 +3,35 @@
     <p><%= vehicle.desc %></p>
     <p>$<%= vehicle.price %></p>
     <p><%= vehicle.mileage %> miles</p>
+    <% if (user?.permission > 1) { %>
+        <details>
+            <summary>Edit</summary>
+            <form action="/vehicle/<%= vehicle.vehicle_id %>" method="post">
+                <input type="hidden" name="_method" value="patch">
+                <label for="mileage">Mileage:</label>
+                <input type="number" name="mileage" id="mileage" required value="<%= vehicle.mileage %>"></input>
+                <label for="price">Price:</label>
+                <input type="number" name="price" id="price" required value="<%= vehicle.price %>"></input>
+                <% if (user?.permission > 2) { %>
+                    <input type="checkbox" name="is_featured" id="is_featured" <%= vehicle.is_featured ? "checked" : "" %>></input>
+                    <label for="is_featured">Featured</label>
+                <% } %>
+                <input type="checkbox" name="is_sold" id="is_sold" <%= vehicle.is_sold ? "checked" : "" %>></input>
+                <label for="is_sold">Purchased</label>
+                
+                <label for="desc">Description:</label>
+                <textarea name="desc" id="desc" required><%= vehicle.desc %></textarea>
+
+                <button type="submit">Update Listing</button>
+            </form>
+            <% if (user?.permission > 2) { %>
+                <form action="/vehicle/<%= vehicle.vehicle_id %>" method="post">
+                    <input type="hidden" name="_method" value="delete">
+                    <button type="submit">Delete Listing</button>
+                </form>
+            <% } %>
+        </details>
+    <% } %>
     <% vehicle.image_paths.forEach(path => { %>
         <img src="<%= path %>" alt="another image of a <%= vehicle.make %> <%= vehicle.model %>">
     <% }) %>

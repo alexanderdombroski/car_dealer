@@ -1,9 +1,11 @@
 import { Router } from 'express';
-import { vehicleDetailsPageController, vehiclesPageController } from '../../controllers/vehicle/index.js';
-import { requireAdminPrivilages, requireLogin } from '../../middleware/scoped/requireAuth.js';
+
 import reviewRouter from './review.js';
 import inquiryRouter from './inquiry.js';
+import { vehicleDeletionController, vehicleDetailsPageController, vehicleDetailsUpdateController, vehiclesPageController } from '../../controllers/vehicle/index.js';
 import { vehicleUploadController, vehicleUploadPageController } from '../../controllers/vehicle/new.js';
+
+import { requireAdminPrivilages, requireEmployeePrivilages, requireLogin } from '../../middleware/scoped/requireAuth.js';
 
 const router = Router();
  
@@ -17,6 +19,8 @@ router.post('/new', requireAdminPrivilages, vehicleUploadController);
 
 // Vehicle Details
 router.get('/:id', vehicleDetailsPageController);
+router.patch('/:id', requireEmployeePrivilages, vehicleDetailsUpdateController);
+router.delete('/:id', requireAdminPrivilages, vehicleDeletionController);
 
 // Vehicle Reviews
 router.use('/:id/review', requireLogin, reviewRouter);

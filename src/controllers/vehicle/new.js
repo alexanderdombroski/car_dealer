@@ -61,6 +61,5 @@ export const vehicleUploadController = async (req, res) => {
     }));
 
     await vehicleNewImages(vid, paths);
-    console.log(paths)
     res.redirect("/vehicle/" + vid);
 };

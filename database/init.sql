@@ -94,7 +94,7 @@ CREATE TABLE public.vehicle (
 -- Create Vehicle Image Table
 CREATE TABLE public.vehicle_image (
     image_id SERIAL PRIMARY KEY,
-    vehicle_id INTEGER NOT NULL REFERENCES public.vehicle(vehicle_id),
+    vehicle_id INTEGER NOT NULL REFERENCES public.vehicle(vehicle_id) ON DELETE CASCADE,
     image_path VARCHAR(255) NOT NULL
 );
 
@@ -102,7 +102,7 @@ CREATE TABLE public.vehicle_image (
 CREATE TABLE public.review (
     review_id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL REFERENCES public."user"(user_id),
-    vehicle_id INTEGER NOT NULL REFERENCES public.vehicle(vehicle_id),
+    vehicle_id INTEGER NOT NULL REFERENCES public.vehicle(vehicle_id) ON DELETE CASCADE,
     message TEXT NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP
@@ -112,7 +112,7 @@ CREATE TABLE public.review (
 CREATE TABLE public.inquiry (
     inquiry_id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL REFERENCES public."user"(user_id),
-    vehicle_id INTEGER NOT NULL REFERENCES public.vehicle(vehicle_id),
+    vehicle_id INTEGER NOT NULL REFERENCES public.vehicle(vehicle_id) ON DELETE CASCADE,
     subject VARCHAR(255) NOT NULL,
     message TEXT NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -122,7 +122,7 @@ CREATE TABLE public.inquiry (
 CREATE TABLE public.repair_request (
     request_id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL REFERENCES public."user"(user_id),
-    vehicle_id INTEGER NOT NULL REFERENCES public.vehicle(vehicle_id),
+    vehicle_id INTEGER NOT NULL REFERENCES public.vehicle(vehicle_id) ON DELETE CASCADE,
     subject VARCHAR(255) NOT NULL,
     "desc" TEXT NOT NULL,
     status INTEGER NOT NULL REFERENCES public.repair_request_status(status_id),

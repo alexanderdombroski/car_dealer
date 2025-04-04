@@ -5,8 +5,8 @@
 - [X] POST - /vehicle/new
 - [X] GET - /vehicle/:id
 - [X] GET - /vehicle/type/:id
-- [ ] PATCH - /vehicle/:id
-- [ ] DELETE - /vehicle/:id
+- [X] PATCH - /vehicle/:id
+- [X] DELETE - /vehicle/:id
 
 ## Category Router
 
@@ -47,11 +47,6 @@
 ## Account Router (Admin Dashboard - Owner)
 
 - [ ] GET - /account
-- [ ] POST - /vehicle
-- [ ] GET - /vehicle
-- [ ] GET - /vehicle/:id
-- [ ] PUT - /vehicle/:id
-- [ ] DELETE - /vehicle/:id
 
 ## Account Router (Admin Dashboard - Employee)
 
