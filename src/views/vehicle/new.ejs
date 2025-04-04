@@ -1,0 +1,53 @@
+<h1>Add a new Listing</h1>
+
+<form action="/vehicle/new" method="post" enctype="multipart/form-data">
+    <fieldset>
+        <legend>Vehicle Specs</legend>
+        
+        <label for="make">Make:</label>
+        <input type="search" list="make-list" name="make" id="make" required></input>
+        <datalist id="make-list">
+            <% makes.forEach(m => { %>
+                <option value="<%= m.make %>" data-id="<%= m.make_id %>"></option>
+            <% }) %>
+        </datalist>
+
+        <label for="model">Model:</label>
+        <input type="search" list="model-list" name="model" id="model" required></input>
+        <datalist id="model-list">
+            <% models.forEach(m => { %>
+                <option value="<%= m.model %>" data-id="<%= m.model_id %>"></option>
+            <% }) %>
+        </datalist>
+
+        <label for="year">Year:</label>
+        <input type="number" name="year" id="year" required></input>
+        
+        <label for="mileage">Mileage:</label>
+        <input type="number" name="mileage" id="mileage" required></input>
+    </fieldset>
+    <fieldset>
+        <legend>Vehicle Details</legend>
+        
+        <label for="price">Price:</label>
+        <input type="number" name="price" id="price" required></input>
+        
+        <label for="category">Category:</label>
+        <input list="category-list" id="category" name="category" type="search">
+        <datalist id="category-list">
+            <% categories.forEach(c => { %>
+                <option value="<%= c.name %>" data-id="<%= c.category_id %>"></option>
+            <% }) %>
+        </datalist>
+
+        <label for="desc">Description:</label>
+        <textarea name="desc" id="desc" required></textarea>
+    </fieldset>
+    <fieldset>
+        <legend>Vehicle Images</legend>
+        <label for="images">Image:</label>
+        <input type="file" name="images" id="images" multiple required></input>
+        
+    </fieldset>
+    <input type="submit">
+</form>

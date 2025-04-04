@@ -3,9 +3,9 @@
     <p><%= vehicle.desc %></p>
     <p>$<%= vehicle.price %></p>
     <p><%= vehicle.mileage %> miles</p>
-    <% for( let i = 0; i < vehicle.image_paths.length; i++ ) { %>
-        <img src="<%= vehicle.image_paths[i] %>" alt="<%= vehicle.alt_texts[i] %>">
-    <% } %>
+    <% vehicle.image_paths.forEach(path => { %>
+        <img src="<%= path %>" alt="another image of a <%= vehicle.make %> <%= vehicle.model %>">
+    <% }) %>
     <p>Interested in learning more about this car? <a href="/vehicle/<%= vehicle.vehicle_id %>/inquiry">Send an inquiry</a>.</p>
 </section>
 <section>

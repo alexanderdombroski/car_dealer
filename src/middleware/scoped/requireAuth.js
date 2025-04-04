@@ -23,12 +23,12 @@ export const requireLogin = async (req, res, next) => {
  * @param {express.Response} res Express Response Object
  * @param {express.NextFunction} next Express Next Function
  */
-export const requireOwnerPrivilages = async (req, res, next) => {
+export const requireEmployeePrivilages = async (req, res, next) => {
     if (req.session.user && req.session.user.user_id && (await getPermissionLevel(req.session.user.user_id)) > 1) {
         next();
         return;
     }
-    req.flash("error", "You must have owner permissions to access this page.");
+    req.flash("error", "You must have employee permissions to access this page.");
     return res.redirect("/account");
 };
 

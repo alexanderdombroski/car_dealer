@@ -1,10 +1,11 @@
 ## Vehicle Router
 
 - [X] GET - /vehicle
+- [X] GET - /vehicle/new
+- [X] POST - /vehicle/new
 - [X] GET - /vehicle/:id
 - [X] GET - /vehicle/type/:id
-- [ ] POST - /vehicle/:id
-- [ ] PUT - /vehicle/:id
+- [ ] PATCH - /vehicle/:id
 - [ ] DELETE - /vehicle/:id
 
 ## Category Router
@@ -29,6 +30,7 @@
 ## Account Router (Authentication)
 
 - [X] GET - /account
+- [X] PATCH - /account
 - [X] GET - /account/login
 - [X] GET - /account/logout
 - [X] POST - /account/login

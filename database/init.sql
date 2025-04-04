@@ -15,7 +15,7 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: status_enum; Type: TYPE; Schema: public; Owner: onehealth
+-- Name: status_enum; Type: TYPE; Schema: public; Owner: cse340admin
 --
 
 CREATE TYPE public.status_enum AS ENUM (
@@ -95,8 +95,7 @@ CREATE TABLE public.vehicle (
 CREATE TABLE public.vehicle_image (
     image_id SERIAL PRIMARY KEY,
     vehicle_id INTEGER NOT NULL REFERENCES public.vehicle(vehicle_id),
-    image_path VARCHAR(255) NOT NULL,
-    alt_text VARCHAR(255) NOT NULL
+    image_path VARCHAR(255) NOT NULL
 );
 
 -- Create Review Table
@@ -178,7 +177,7 @@ INSERT INTO public.model (make_id, category_id, model) VALUES
 -- Populate Users
 INSERT INTO public."user" (username, email, password_hash, permission, first_name, last_name) VALUES 
 ('johndoe', 'john.doe@example.com', '$2b$10$randomhashhere', 1, 'John', 'Doe'),
-('janedoe', 'jane.doe@example.com', '$2b$10$anotherhashhere', 2, 'Jane', 'Doe')
+('janedoe', 'jane.doe@example.com', '$2b$10$anotherhashhere', 2, 'Jane', 'Doe'),
 ('admin123', 'admin@example.com', '$argon2id$v=19$m=65536,t=3,p=4$sGJCsB84+LsoffOXKHLElg$81FOP7QAB9jx7TnMayq2l+25fanlk0ESkH30djU6BMg', 3, 'Admin', 'Of Power');
 
 -- Populate Vehicles
@@ -199,35 +198,35 @@ INSERT INTO public.vehicle (user_id, model_id, year, mileage, "desc", price, is_
 (1, 14, 2019, 95000, 'Robust Jeep Wrangler', 42000.00, false, false);
 
 -- Populate Vehicle Images
-INSERT INTO public.vehicle_image (vehicle_id, image_path, alt_text) VALUES 
-(1, '/images/vehicles/adventador.jpg', 'Lamborghini Aventador'),
-(1, '/images/vehicles/adventador-tn.jpg', 'Lamborghini Aventador Thumbnail'),
-(2, '/images/vehicles/aerocar.jpg', 'Flying Aerocar'),
-(2, '/images/vehicles/aerocar-tn.jpg', 'Flying Aerocar Thumbnail'),
-(3, '/images/vehicles/batmobile.jpg', 'Batmobile Replica'),
-(3, '/images/vehicles/batmobile-tn.jpg', 'Batmobile Thumbnail'),
-(4, '/images/vehicles/camaro.jpg', 'Chevrolet Camaro'),
-(4, '/images/vehicles/camaro-tn.jpg', 'Chevrolet Camaro Thumbnail'),
-(5, '/images/vehicles/crwn-vic.jpg', 'Crown Victoria Police Interceptor'),
-(5, '/images/vehicles/crwn-vic-tn.jpg', 'Crown Victoria Thumbnail'),
-(6, '/images/vehicles/delorean.jpg', 'DeLorean Time Machine'),
-(6, '/images/vehicles/delorean-tn.jpg', 'DeLorean Thumbnail'),
-(7, '/images/vehicles/fire-truck.jpg', 'Fire Truck'),
-(7, '/images/vehicles/fire-truck-tn.jpg', 'Fire Truck Thumbnail'),
-(8, '/images/vehicles/escalade.jpg', 'Cadillac Escalade'),
-(8, '/images/vehicles/escalade-tn.jpg', 'Cadillac Escalade Thumbnail'),
-(9, '/images/vehicles/hummer.jpg', 'Military Hummer'),
-(9, '/images/vehicles/hummer-tn.jpg', 'Military Hummer Thumbnail'),
-(10, '/images/vehicles/model-t.jpg', 'Ford Model T'),
-(10, '/images/vehicles/model-t-tn.jpg', 'Ford Model T Thumbnail'),
-(11, '/images/vehicles/monster-truck.jpg', 'Monster Truck'),
-(11, '/images/vehicles/monster-truck-tn.jpg', 'Monster Truck Thumbnail'),
-(12, '/images/vehicles/mystery-van.jpg', 'Mystery Solving Van'),
-(12, '/images/vehicles/mystery-van-tn.jpg', 'Mystery Van Thumbnail'),
-(13, '/images/vehicles/survan.jpg', 'Surfer Van'),
-(13, '/images/vehicles/survan-tn.jpg', 'Surfer Van Thumbnail'),
-(14, '/images/vehicles/wrangler.jpg', 'Jeep Wrangler'),
-(14, '/images/vehicles/wrangler-tn.jpg', 'Jeep Wrangler Thumbnail');
+INSERT INTO public.vehicle_image (vehicle_id, image_path) VALUES 
+(1, '/images/vehicles/adventador.jpg'),
+(1, '/images/vehicles/adventador-tn.jpg'),
+(2, '/images/vehicles/aerocar.jpg'),
+(2, '/images/vehicles/aerocar-tn.jpg'),
+(3, '/images/vehicles/batmobile.jpg'),
+(3, '/images/vehicles/batmobile-tn.jpg'),
+(4, '/images/vehicles/camaro.jpg'),
+(4, '/images/vehicles/camaro-tn.jpg'),
+(5, '/images/vehicles/crwn-vic.jpg'),
+(5, '/images/vehicles/crwn-vic-tn.jpg'),
+(6, '/images/vehicles/delorean.jpg'),
+(6, '/images/vehicles/delorean-tn.jpg'),
+(7, '/images/vehicles/fire-truck.jpg'),
+(7, '/images/vehicles/fire-truck-tn.jpg'),
+(8, '/images/vehicles/escalade.jpg'),
+(8, '/images/vehicles/escalade-tn.jpg'),
+(9, '/images/vehicles/hummer.jpg'),
+(9, '/images/vehicles/hummer-tn.jpg'),
+(10, '/images/vehicles/model-t.jpg'),
+(10, '/images/vehicles/model-t-tn.jpg'),
+(11, '/images/vehicles/monster-truck.jpg'),
+(11, '/images/vehicles/monster-truck-tn.jpg'),
+(12, '/images/vehicles/mystery-van.jpg'),
+(12, '/images/vehicles/mystery-van-tn.jpg'),
+(13, '/images/vehicles/survan.jpg'),
+(13, '/images/vehicles/survan-tn.jpg'),
+(14, '/images/vehicles/wrangler.jpg'),
+(14, '/images/vehicles/wrangler-tn.jpg');
 
 -- Populate Reviews
 INSERT INTO public.review (user_id, vehicle_id, message) VALUES 

@@ -1,5 +1,5 @@
 import express from "express";
-import { getVehicles, getVehicleTypes } from "../models/vehicle.js";
+import { getVehicles, vehicleTypesList } from "../models/vehicle.js";
 import { getVehicleTypeNav } from "../utils/templates.js";
 
 /**
@@ -10,7 +10,7 @@ import { getVehicleTypeNav } from "../utils/templates.js";
  */
 export const homeController = async (_req, res) => {
     const vehicles = await getVehicles(null, null, true);
-    const types = await getVehicleTypes();
+    const types = await vehicleTypesList();
     
     const vehicleTypeNav = getVehicleTypeNav(types);
     res.render('index', { title: 'Home Page', vehicles, vehicleTypeNav });

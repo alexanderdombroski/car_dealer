@@ -45,7 +45,6 @@ erDiagram
         int image_id PK "AI UN NN"
         int vehicle_id FK "UN NN"
         varchar image_path "NN"
-        varchar alt_text "NN"
     }
 
 

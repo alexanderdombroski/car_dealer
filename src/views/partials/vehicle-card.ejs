@@ -1,6 +1,6 @@
 <a href="/vehicle/<%= vehicle.vehicle_id %>">
     <figure>
-        <img src="<%= vehicle.image_paths[0] %>" alt="<%= vehicle.alt_texts[0] %>">
+        <img src="<%= vehicle.image_paths[0] %>" alt="<%= vehicle.year %> <%= vehicle.make %> <%= vehicle.model %> thumbnail">
         <figcaption><%= vehicle.year %> <%= vehicle.make %> <%= vehicle.model %></figcaption>
     </figure>
     <p>$<%= vehicle.price %></p>

@@ -1,7 +1,7 @@
 
-function placeholderClosure() {
-    let i = 0;
-    return () => `$${++i}`;
+function placeholderClosure(start = 1) {
+    let i = start;
+    return () => `$${i++}`;
 }
 
 export { placeholderClosure }
