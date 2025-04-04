@@ -112,3 +112,32 @@ export async function accountEmailUpdate(userId, email) {
 
     return await dbClient.query(query, [userId, email]);
 }
+
+export async function accountList() {
+    const query = `
+        SELECT username, user_id, permission, first_name, last_name, email 
+        FROM public.user
+        ORDER BY permission DESC;
+    `;
+
+    return (await dbClient.query(query)).rows;
+}
+
+export async function accountPermissionUpdate(userId, permission) {
+    const query = `
+        UPDATE public.user
+        SET permission = $2, updated_at = NOW()
+        WHERE user_id = $1;
+    `;
+
+    return await dbClient.query(query, [userId, permission]);
+}
+
+export async function accountDelete(userId) {
+    const query = `
+        DELETE FROM public.user
+        WHERE user_id = $1;
+    `;
+
+    return await dbClient.query(query, [userId]);
+}

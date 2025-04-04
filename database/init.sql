@@ -79,7 +79,7 @@ CREATE TABLE public.model (
 -- Create Vehicle Table
 CREATE TABLE public.vehicle (
     vehicle_id SERIAL PRIMARY KEY,
-    user_id INTEGER NOT NULL REFERENCES public."user"(user_id),
+    user_id INTEGER REFERENCES public."user"(user_id) ON DELETE SET NULL,
     model_id INTEGER NOT NULL REFERENCES public.model(model_id),
     year INTEGER NOT NULL,
     mileage INTEGER NOT NULL,
@@ -101,7 +101,7 @@ CREATE TABLE public.vehicle_image (
 -- Create Review Table
 CREATE TABLE public.review (
     review_id SERIAL PRIMARY KEY,
-    user_id INTEGER NOT NULL REFERENCES public."user"(user_id),
+    user_id INTEGER NOT NULL REFERENCES public."user"(user_id) ON DELETE CASCADE,
     vehicle_id INTEGER NOT NULL REFERENCES public.vehicle(vehicle_id) ON DELETE CASCADE,
     message TEXT NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -111,7 +111,7 @@ CREATE TABLE public.review (
 -- Create Inquiry Table
 CREATE TABLE public.inquiry (
     inquiry_id SERIAL PRIMARY KEY,
-    user_id INTEGER NOT NULL REFERENCES public."user"(user_id),
+    user_id INTEGER REFERENCES public."user"(user_id) ON DELETE SET NULL,
     vehicle_id INTEGER NOT NULL REFERENCES public.vehicle(vehicle_id) ON DELETE CASCADE,
     subject VARCHAR(255) NOT NULL,
     message TEXT NOT NULL,
@@ -121,7 +121,7 @@ CREATE TABLE public.inquiry (
 -- Create Repair Request Table
 CREATE TABLE public.repair_request (
     request_id SERIAL PRIMARY KEY,
-    user_id INTEGER NOT NULL REFERENCES public."user"(user_id),
+    user_id INTEGER REFERENCES public."user"(user_id) ON DELETE SET NULL,
     vehicle_id INTEGER NOT NULL REFERENCES public.vehicle(vehicle_id) ON DELETE CASCADE,
     subject VARCHAR(255) NOT NULL,
     "desc" TEXT NOT NULL,

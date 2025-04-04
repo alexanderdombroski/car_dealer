@@ -1,0 +1,20 @@
+<h1>Manage Accounts</h1>
+
+<% users.forEach(user => { %>
+    <form action="/account/manage/<%= user.user_id %>" method="post">
+        <input type="hidden" name="_method" value="patch">
+        <p><%= user.username %> | <%= user.first_name %> <%= user.last_name %> | <%= user.email %></p>
+        <label for="permission">Permission: (currently a <%= roles[user.permission] %>)</label>
+        <input list="permission-list" id="permission" name="permission" type="search" pattern="<%- Object.values(roles).join('|') %>" required>
+        <datalist id="permission-list">
+            <% Object.entries(roles).forEach(role => { %>
+                <option value="<%= role[1] %>" data-id="<%= role[0] %>"></option>
+            <% }) %>
+        </datalist>
+        <button type="submit">Update Permissions</button>
+    </form>
+    <form action="/account/manage/<%= user.user_id %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button type="submit">Delete User</button>
+    </form>
+<% }) %>

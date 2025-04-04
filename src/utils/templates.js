@@ -13,6 +13,7 @@ const getNav = (isLoggedIn, isOwner) => {
             ${isLoggedIn ? '<a href="/account/logout">Log Out</a>' : '<a href="/account/login">Log In</a>'}
             ${isOwner ? '<a href="/vehicle/new">Add Vehicle Listing</a>' : ""}
             ${isOwner ? '<a href="/vehicle/type">Edit Categories</a>' : ""}    
+            ${isOwner ? '<a href="/account/manage">Manage Users</a>' : ""}
         </nav>
     `;
     

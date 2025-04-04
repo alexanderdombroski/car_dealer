@@ -12,6 +12,12 @@
 - [X] GET - /account/register
 - [X] POST - /account/register
 
+## Account Management Router
+
+- [X] GET - /account/manage
+- [X] PATCH - /account/manage:id
+- [X] DELETE - /account/manage:id
+
 ## Vehicle Router
 
 - [X] GET - /vehicle
