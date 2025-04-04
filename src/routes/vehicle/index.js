@@ -1,8 +1,9 @@
 import { Router } from 'express';
 
+import categoryRouter from './category.js';
 import reviewRouter from './review.js';
 import inquiryRouter from './inquiry.js';
-import { vehicleDeletionController, vehicleDetailsPageController, vehicleDetailsUpdateController, vehiclesPageController } from '../../controllers/vehicle/index.js';
+import { vehicleDeletionController, vehicleDetailsPageController, vehicleDetailsUpdateController, vehiclesPageController, vehiclesUncategorizedPageController } from '../../controllers/vehicle/index.js';
 import { vehicleUploadController, vehicleUploadPageController } from '../../controllers/vehicle/new.js';
 
 import { requireAdminPrivilages, requireEmployeePrivilages, requireLogin } from '../../middleware/scoped/requireAuth.js';
@@ -11,7 +12,8 @@ const router = Router();
  
 // Vehicle Listings
 router.get('/', vehiclesPageController);
-router.get('/type/:id', vehiclesPageController)
+router.use('/type', categoryRouter);
+router.get('/uncategorized', vehiclesUncategorizedPageController);
 
 // Upload new Vehicle
 router.get('/new', requireAdminPrivilages, vehicleUploadPageController);

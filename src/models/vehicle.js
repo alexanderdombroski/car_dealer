@@ -8,7 +8,7 @@ import dbClient from "./index.js";
  * @param {int|null} [vehicle_id=null] 
  * @param {bool|null} isFeatured 
  */
-export async function getVehicles(category = null, vehicle_id = null, isFeatured = null) {
+export async function getVehicles(category = undefined, vehicle_id = undefined, isFeatured = null) {
     let query = `
         SELECT
             v.vehicle_id, price, user_id,
@@ -19,15 +19,17 @@ export async function getVehicles(category = null, vehicle_id = null, isFeatured
         FROM public.vehicle AS v
         JOIN public.model AS m ON m.model_id = v.model_id
         JOIN public.make AS mk ON m.make_id = mk.make_id
-        JOIN public.vehicle_category AS c ON c.category_id = m.category_id
+        LEFT JOIN public.vehicle_category AS c ON c.category_id = m.category_id
         JOIN public.vehicle_image AS i ON i.vehicle_id = v.vehicle_id
     `;
     
     const p = placeholderClosure();
     const filters = []
     const placeholders = []
-    if (category) {
-        filters.push("c.category_id = " + p())
+    if (category === null) {
+        filters.push("c.category_id IS NULL");
+    } else if (category) {
+        filters.push("c.category_id = " + p());
         placeholders.push(category);
     };
     if (vehicle_id) {
@@ -45,14 +47,6 @@ export async function getVehicles(category = null, vehicle_id = null, isFeatured
     query += " GROUP BY v.vehicle_id, price, v.year, model, make, c.name;"
 
     return (await dbClient.query(query, placeholders)).rows;
-}
-
-export async function vehicleTypesList() {
-    let query = `
-        SELECT * FROM public.vehicle_category;
-    `;
-
-    return (await dbClient.query(query)).rows;
 }
 
 export async function vehicleMakesList() {
@@ -84,21 +78,6 @@ export async function vehicleNewListing(userId, modelId, year, mileage, desc, pr
     `;
     const result = await dbClient.query(query, [userId, modelId, year, mileage, desc, price]);
     return result.rows[0].vehicle_id;
-}
-
-/**
- * Creates a new vehicle category
- * 
- * @returns {Promise<number|undefined>} category_id
- */
-export async function vehicleNewCatagory(name) {
-    const query = `
-        INSERT INTO public.vehicle_category (name)
-        VALUES ($1)
-        RETURNING category_id;
-    `;
-    const result = await dbClient.query(query, [name]);
-    return result.rows[0].category_id;
 }
 
 /**

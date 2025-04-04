@@ -6,6 +6,8 @@ import { getVehicles, vehicleDelete, vehicleImages, vehicleUpdate } from '../../
 import { reviewsList } from '../../models/review.js';
 import { caledarWithTimeFormat } from '../../utils/date.js';
 import { fileExists } from '../../utils/fileSystem.js';
+import { getVehicleTypeNav } from '../../utils/templates.js';
+import { categoryList } from '../../models/category.js';
 
 /**
  * Display Page with all Vehicles
@@ -14,8 +16,11 @@ import { fileExists } from '../../utils/fileSystem.js';
  * @param {express.Response} res Express Response Object
  */
 export const vehiclesPageController = async (req, res) => {
+    const types = await categoryList();
+    const vehicleTypeNav = getVehicleTypeNav(types);
+    
     const vehicles = await getVehicles(req.params.id);
-    res.render("vehicle/index", {title: "Listings", vehicles});
+    res.render("vehicle/index", {title: "Listings", vehicles, vehicleTypeNav});
 };
 
 /**
@@ -61,4 +66,18 @@ export const vehicleDeletionController = async (req, res) => {
     await vehicleDelete(req.params.id)
 
     res.redirect('/vehicle');
+};
+
+/**
+ * Display Page with all Vehicles without a category
+ * 
+ * @param {express.Request} req Express Request Object
+ * @param {express.Response} res Express Response Object
+ */
+export const vehiclesUncategorizedPageController = async (_req, res) => {
+    const types = await categoryList();
+    const vehicleTypeNav = getVehicleTypeNav(types);
+    
+    const vehicles = await getVehicles(null);
+    res.render("vehicle/index", {title: "Listings", vehicles, vehicleTypeNav});
 };

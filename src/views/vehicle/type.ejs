@@ -1,0 +1,18 @@
+<section>
+    <h1>Edit Vehicle Categories</h1>
+    <% categories.forEach(category => { %>
+        <article>
+            <a href="/vehicle/type/<%= category.category_id %>"><%= category.name %></a>
+            <form action="/vehicle/type/<%= category.category_id %>" method="post">
+                <input type="hidden" name="_method" value="put">
+                <label for="name">Name:</label>
+                <input type="text" name="name" id="name" required value="<%= category.name %>"></input>
+                <button type="submit">Update Category</button>
+            </form>
+            <form action="/vehicle/type/<%= category.category_id %>" method="post">
+                <input type="hidden" name="_method" value="delete">
+                <button type="submit">Delete Category</button>
+            </form>
+        </article>
+    <% }) %>
+</section>

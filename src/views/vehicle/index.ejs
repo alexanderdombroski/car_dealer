@@ -1,5 +1,9 @@
 <h1>Current Listings</h1>
 
+<aside>
+    <%- vehicleTypeNav %>
+</aside>
+
 <% vehicles.forEach(vehicle => { %>
     <%- include('../partials/vehicle-card.ejs', { vehicle }) %>
 <% }) %>

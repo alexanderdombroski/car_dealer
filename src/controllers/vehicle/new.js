@@ -1,7 +1,8 @@
 import express from "express";
-import { vehicleMakesList, vehicleModelsList, vehicleNewCatagory, vehicleNewImages, vehicleNewListing, vehicleNewMake, vehicleNewModel, vehicleTypesList } from "../../models/vehicle.js";
+import { vehicleMakesList, vehicleModelsList, vehicleNewImages, vehicleNewListing, vehicleNewMake, vehicleNewModel } from "../../models/vehicle.js";
 import fs from "fs";
 import path from "path";
+import { categoryNew, categoryList } from "../../models/category.js";
 
 /**
  * Render Vehicle Upload Page
@@ -13,7 +14,7 @@ export const vehicleUploadPageController = async (req, res) => {
     const [makes, models, categories] = await Promise.all([
         vehicleMakesList(),
         vehicleModelsList(),
-        vehicleTypesList(),
+        categoryList(),
     ]);
     req.useSearchInputs()
 
@@ -30,7 +31,7 @@ export const vehicleUploadController = async (req, res) => {
 
     let categoryId = req.body.category_id;
     if (categoryId === undefined) {
-        categoryId = await vehicleNewCatagory(req.body.category);
+        categoryId = await categoryNew(req.body.category);
     }
 
     let makeId = req.body.make_id;

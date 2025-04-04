@@ -72,7 +72,7 @@ CREATE TABLE public."user" (
 CREATE TABLE public.model (
     model_id SERIAL PRIMARY KEY,
     make_id INTEGER NOT NULL REFERENCES public.make(make_id),
-    category_id INTEGER NOT NULL REFERENCES public.vehicle_category(category_id),
+    category_id INTEGER REFERENCES public.vehicle_category(category_id) ON DELETE SET NULL,
     model VARCHAR(100) NOT NULL
 );
 
