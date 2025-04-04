@@ -8,7 +8,7 @@ import dbClient from "./index.js";
  * @param {int|null} [vehicle_id=null] 
  * @param {bool|null} isFeatured 
  */
-export async function getVehicles(category = undefined, vehicle_id = undefined, isFeatured = null) {
+export async function getVehicles(filterValues = {}) {
     let query = `
         SELECT
             v.vehicle_id, price, user_id,
@@ -26,19 +26,19 @@ export async function getVehicles(category = undefined, vehicle_id = undefined, 
     const p = placeholderClosure();
     const filters = []
     const placeholders = []
-    if (category === null) {
+    if (filterValues?.categoryId === null) {
         filters.push("c.category_id IS NULL");
-    } else if (category) {
+    } else if (filterValues?.categoryId) {
         filters.push("c.category_id = " + p());
-        placeholders.push(category);
+        placeholders.push(filterValues.categoryId);
     };
-    if (vehicle_id) {
+    if (filterValues?.vehicleId) {
         filters.push("v.vehicle_id = " + p());
-        placeholders.push(vehicle_id);
+        placeholders.push(filterValues.vehicleId);
     }
-    if (isFeatured !== null) {
+    if (filterValues?.isFeatured !== undefined) {
         filters.push("is_featured = " + p());
-        placeholders.push(isFeatured);
+        placeholders.push(filterValues.isFeatured);
     }
     if (filters.length !== 0) {
         query += "WHERE " + filters.join(" AND ");

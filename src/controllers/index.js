@@ -10,7 +10,7 @@ import { categoryList } from "../models/category.js";
  * @param {express.Response} res 
  */
 export const homeController = async (_req, res) => {
-    const vehicles = await getVehicles(undefined, undefined, true);
+    const vehicles = await getVehicles({isFeatured: true});
     const types = await categoryList();
     
     const vehicleTypeNav = getVehicleTypeNav(types);

@@ -1,0 +1,7 @@
+<label for="category">Category:</label>
+<input list="category-list" id="category" name="category" type="search" <%- typeof vehicle !== 'undefined' && vehicle && vehicle?.category ? `value="${vehicle.category}"` : "" %> required>
+<datalist id="category-list">
+    <% categories.forEach(c => { %>
+        <option value="<%= c.name %>" data-id="<%= c.category_id %>"></option>
+    <% }) %>
+</datalist>

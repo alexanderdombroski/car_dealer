@@ -1,33 +1,8 @@
-## Vehicle Router
+# Routes
 
-- [X] GET - /vehicle
-- [X] GET - /vehicle/new
-- [X] POST - /vehicle/new
-- [X] GET - /vehicle/:id
-- [X] GET - /vehicle/type/:id
-- [X] PATCH - /vehicle/:id
-- [X] DELETE - /vehicle/:id
+- [X] GET - /
 
-## Category Router
-
-- [ ] GET - /category/:id
-- [ ] GET - /category
-- [ ] POST - /category
-- [ ] PUT - /category/:id
-- [ ] DELETE - /category/:id
-
-## Inquiry Router
-
-- [ ] POST - /inquiry
-- [ ] GET - /inquiry
-
-## Review Router
-
-- [X] POST - /vehicle/:id/review
-- [X] PUT - /vehicle/:id/review/:rid
-- [X] DELETE - /vehicle/:id/review/:rid
-
-## Account Router (Authentication)
+## Account Router
 
 - [X] GET - /account
 - [X] PATCH - /account
@@ -37,12 +12,40 @@
 - [X] GET - /account/register
 - [X] POST - /account/register
 
+## Vehicle Router
+
+- [X] GET - /vehicle
+- [X] GET - /vehicle/new
+- [X] POST - /vehicle/new
+- [X] GET - /vehicle/uncategorized
+- [X] GET - /vehicle/:id
+- [X] PATCH - /vehicle/:id
+- [X] DELETE - /vehicle/:id
+
+## Vehicle Category Router
+
+- [X] GET - /vehicle/type
+- [X] GET - /vehicle/type/:id
+- [X] PUT - /vehicle/type/:id
+- [X] DELETE - /vehicle/type/:id
+
+## Inquiry Router
+
+- [X] GET - /vehicle/:id/inquiry
+- [X] POST - /vehicle/:id/inquiry
+- [ ] PUT - /vehicle/:id/inquiry
+- [ ] DELETE - /vehicle/:id/inquiry
+
+## Review Router
+
+- [X] POST - /vehicle/:id/review
+- [X] PUT - /vehicle/:id/review/:rid
+- [X] DELETE - /vehicle/:id/review/:rid
+
 ## Account Router (User Dashboard)
 
 - [ ] GET - /account/review
 - [ ] GET - /account/repair
-- [ ] GET - /account
-- [ ] PUT - /account
 
 ## Account Router (Admin Dashboard - Owner)
 

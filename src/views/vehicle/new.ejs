@@ -32,13 +32,7 @@
         <label for="price">Price:</label>
         <input type="number" name="price" id="price" required></input>
         
-        <label for="category">Category:</label>
-        <input list="category-list" id="category" name="category" type="search">
-        <datalist id="category-list">
-            <% categories.forEach(c => { %>
-                <option value="<%= c.name %>" data-id="<%= c.category_id %>"></option>
-            <% }) %>
-        </datalist>
+        <%- include('../partials/category-search-input') %>
 
         <label for="desc">Description:</label>
         <textarea name="desc" id="desc" required></textarea>

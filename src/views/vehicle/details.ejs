@@ -1,5 +1,12 @@
+<h1>Listing Details</h1>
+
+<aside>
+    <%- vehicleTypeNav %>
+</aside>
+
 <section>
-    <h1><%= vehicle.make %> <%= vehicle.model %> <%= vehicle.year %></h1>
+    <h2><%= vehicle.make %> <%= vehicle.model %> <%= vehicle.year %></h2>
+    
     <p><%= vehicle.desc %></p>
     <p>$<%= vehicle.price %></p>
     <p><%= vehicle.mileage %> miles</p>
@@ -8,14 +15,20 @@
             <summary>Edit</summary>
             <form action="/vehicle/<%= vehicle.vehicle_id %>" method="post">
                 <input type="hidden" name="_method" value="patch">
+                
                 <label for="mileage">Mileage:</label>
                 <input type="number" name="mileage" id="mileage" required value="<%= vehicle.mileage %>"></input>
                 <label for="price">Price:</label>
                 <input type="number" name="price" id="price" required value="<%= vehicle.price %>"></input>
+                
+                <%- include('../partials/category-search-input') %>
+                
                 <% if (user?.permission > 2) { %>
                     <input type="checkbox" name="is_featured" id="is_featured" <%= vehicle.is_featured ? "checked" : "" %>></input>
                     <label for="is_featured">Featured</label>
                 <% } %>
+                
+
                 <input type="checkbox" name="is_sold" id="is_sold" <%= vehicle.is_sold ? "checked" : "" %>></input>
                 <label for="is_sold">Purchased</label>
                 

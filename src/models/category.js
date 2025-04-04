@@ -50,3 +50,17 @@ export async function categoryDelete(categoryId) {
     
     return await dbClient.query(query, [categoryId])
 }
+
+export async function vehicleCategoryUpdate(vehicleId, categoryId) {
+    const query = `
+        UPDATE public.model
+        SET category_id = $2
+        WHERE model_id = (
+            SELECT v.model_id
+            FROM public.vehicle AS v
+            WHERE v.vehicle_id = $1
+        );
+    `;
+
+    return await dbClient.query(query, [vehicleId, categoryId]);
+}
