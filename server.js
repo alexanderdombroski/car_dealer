@@ -13,6 +13,7 @@ import { configureStaticPaths } from './src/utils/index.js';
 import { saveSession, useSession } from "./src/middleware/global/sessions.js";
 import flashMessages from "./src/middleware/global/flash-messages.js";
 import postMethodOverride from "./src/middleware/global/method-override.js";
+import { errorCatching, errorThrowing } from "./src/middleware/error/index.js";
 
 // Utils
 import setUpDevMode from './src/utils/devMode.js';
@@ -78,6 +79,9 @@ app.use('/vehicle', vehicleRoutes);
 app.use('/repair', repairRoutes);
 app.use('/inquiry', inquiryRoutes);
 
+// Error Handling
+app.use(errorThrowing)
+app.use(errorCatching);
 
 // When in development mode, start a WebSocket server for live reloading
 setUpDevMode();
