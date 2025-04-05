@@ -1,11 +1,16 @@
-@media screen and (min-width: 60rem) {
+@media screen and (min-width: 75rem) {
   body {
     & > header {
 			flex-direction: row;
+			align-items: center;
+			
+			& > form {
+				margin-left: auto;
+				position: static;
+			}
 			
 			& > nav {
 				display: block; 
-				width: 100%;
 				& > ul {
 					flex-direction: row;
 					justify-content: right;

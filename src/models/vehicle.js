@@ -40,6 +40,17 @@ export async function getVehicles(filterValues = {}) {
         filters.push("is_featured = " + p());
         placeholders.push(filterValues.isFeatured);
     }
+    if (filterValues?.search) {
+        const ph = p();
+        filters.push(`
+            (
+                CAST(year AS TEXT) LIKE '%' || ${ph} || '%' OR
+                make ILIKE '%' || ${ph} || '%' OR
+                model ILIKE '%' || ${ph} || '%' OR
+                c.name ILIKE '%' || ${ph} || '%'
+            )`);
+        placeholders.push(filterValues.search);
+    }
     if (filters.length !== 0) {
         query += "WHERE " + filters.join(" AND ");
     }

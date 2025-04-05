@@ -19,7 +19,7 @@ export const vehiclesPageController = async (req, res) => {
     const types = await categoryList();
     const vehicleTypeNav = getVehicleTypeNav(types);
     
-    const vehicles = await getVehicles({categoryId: req.params.id});
+    const vehicles = await getVehicles({categoryId: req.params.id, search: req.query.search});
     res.render("vehicle/index", {title: "Listings", vehicles, vehicleTypeNav});
 };
 

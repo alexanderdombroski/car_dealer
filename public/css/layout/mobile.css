@@ -3,9 +3,36 @@ body {
 		display: flex;
 		padding: 1rem;
 		text-align: right;
-		align-content: center;
+		align-items: top;
 		background-color: var(--secondary-color);
 		
+		& > form {
+			display: flex;
+			align-items: center;
+			justify-content: right;
+			position: absolute;
+			right: 5rem;
+			top: 3rem;
+
+			& > input {
+				width: 9rem;
+				height: 2rem;
+			}
+			
+			& > button {
+			border: none;
+				background-color: transparent;
+				margin: 0;
+				padding: 0;
+
+				& > label {
+					margin: 0;
+					margin-left: 0.5rem;
+				}
+			}
+
+		}
+
 		& > a, & img {
 			width: 4rem;
 			height: 4rem;
@@ -19,6 +46,7 @@ body {
 		/* Mobile Nav */
 		& details {
 			width: 100%;
+			margin-top: 1.2rem;
 
 			& summary {
 				font-size: 3em;
@@ -27,7 +55,6 @@ body {
 			& > nav > ul {
 				margin: 0;
 				flex-direction: column;
-	
 			}
 		}
 	}

@@ -7,7 +7,7 @@ const configureNodeEnvironment = async (req, res, next) => {
     const isLoggedIn = req.session.user && req.session.user.user_id;
     res.locals.isLoggedIn = isLoggedIn;
     res.locals.isDevMode = mode.includes('dev');
-    res.locals.navHTML = getNav(isLoggedIn, req.session.user?.permission > 2);
+    res.locals.navHTML = getNav(isLoggedIn, req.session.user?.permission);
     res.locals.port = port;
     res.locals.scripts = [];
     res.locals.styles = [];

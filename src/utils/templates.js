@@ -6,16 +6,20 @@ import { titleCase } from "./string.js";
  * @param {boolean} isLoggedIn
  * @returns {string} The navigation menu.
  */
-const getNav = (isLoggedIn, isOwner) => {
+const getNav = (isLoggedIn, permission) => {
+	const isEmployee = permission > 1;
+	const isOwner = permission > 2;
 	const nav = `
 		<nav>
 			<ul>
 				${isLoggedIn ? '<li><a href="/account">Account</a></li>' : ''}
-				${isLoggedIn ? '<li><a href="/account/logout">Log Out</a>' : '<li><a href="/account/login">Log In</a></li>'}
 				<li><a href="/#">About</a>
-				${isOwner ? '<li><a href="/vehicle/new">Add Vehicle Listing</a></li>' : ""}
+				${isLoggedIn ? '<li><a href="/account/logout">Log Out</a>' : '<li><a href="/account/login">Log In</a></li>'}
+				${isOwner ? '<li><a href="/vehicle/new">Add Listing</a></li>' : ""}
 				${isOwner ? '<li><a href="/vehicle/type">Edit Categories</a></li>' : ""}    
 				${isOwner ? '<li><a href="/account/manage">Manage Users</a></li>' : ""}
+				${isEmployee ? '<li><a href="/inquiry">Inquiries</a></li>' : ""}
+				${isEmployee ? '<li><a href="/repair">Repairs</a></li>' : ""}
 			</ul>
 		</nav>
 	`;
