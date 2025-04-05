@@ -62,6 +62,7 @@ erDiagram
         int vehicle_id FK "UN NN"
         varchar subject "NN"
         text message "NN"
+        bool responded "NN"
         timestamp created_at "NN"
     }
     REPAIR_REQUEST {

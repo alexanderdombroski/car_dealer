@@ -35,12 +35,14 @@
 - [X] PUT - /vehicle/type/:id
 - [X] DELETE - /vehicle/type/:id
 
-## Inquiry Router
+## Vehicle Inquiry Router
 
 - [X] GET - /vehicle/:id/inquiry
 - [X] POST - /vehicle/:id/inquiry
-- [ ] PUT - /vehicle/:id/inquiry
-- [ ] DELETE - /vehicle/:id/inquiry
+- [ ] GET - /inquiry
+- [ ] PUT - /inquiry/:id
+- [ ] PATCH - /inquiry/:id
+- [ ] DELETE - /inquiry/:id
 
 ## Review Router
 
@@ -48,26 +50,10 @@
 - [X] PUT - /vehicle/:id/review/:rid
 - [X] DELETE - /vehicle/:id/review/:rid
 
-## Account Router (User Dashboard)
-
-- [ ] GET - /account/review
-- [ ] GET - /account/repair
-
-## Account Router (Admin Dashboard - Owner)
-
-- [ ] GET - /account
-
-## Account Router (Admin Dashboard - Employee)
-
-- [ ] GET - /account
-- [ ] PUT - /vehicle/:id
-- [ ] DELETE - /vehicle/:id
-- [ ] GET - /repair
-- [ ] PUT - /repair/:id
-
 ## Repair Router
 
-- [ ] POST - /repair
 - [ ] GET - /repair
-- [ ] GET - /repair/:id
-- [ ] PUT - /repair/:id
+- [ ] POST - /repair
+- [ ] GET - /repair/manage
+- [ ] PATCH - /repair/:id
+- [ ] DELETE - /repair/:id

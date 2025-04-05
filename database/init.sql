@@ -115,6 +115,7 @@ CREATE TABLE public.inquiry (
     vehicle_id INTEGER NOT NULL REFERENCES public.vehicle(vehicle_id) ON DELETE CASCADE,
     subject VARCHAR(255) NOT NULL,
     message TEXT NOT NULL,
+    responded BOOLEAN NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
