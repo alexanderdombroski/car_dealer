@@ -19,8 +19,10 @@ import setUpDevMode from './src/utils/devMode.js';
 
 // Route Imports
 import homeRoutes from './src/routes/index.js';
-import accountRoutes from './src/routes/account.js'
-import vehicleRoutes from './src/routes/vehicle/index.js'
+import accountRoutes from './src/routes/account.js';
+import vehicleRoutes from './src/routes/vehicle/index.js';
+import repairRoutes from './src/routes/repair.js';
+import inquiryRoutes from './src/routes/inquiry.js';
 
 /**
  * Global Variables
@@ -73,10 +75,9 @@ app.use(postMethodOverride);
 app.use('/', homeRoutes);
 app.use('/account', accountRoutes);
 app.use('/vehicle', vehicleRoutes);
+app.use('/repair', repairRoutes);
+app.use('/inquiry', inquiryRoutes);
 
-/**
- * Start the server
- */
 
 // When in development mode, start a WebSocket server for live reloading
 setUpDevMode();
