@@ -1,0 +1,15 @@
+:root {
+    color-scheme: light dark;
+
+    --primary-light: light-dark(#F2F2F2, #363636);
+    --primary-dark: light-dark(#363636, #F2F2F2);
+    --secondary-color: #F2C791;
+    --accent-color: #0073a1;
+    --accent2-color: #721c24;
+
+    --flash-success-text-color: #155724;
+    --flash-error-text-color: var(--accent2-color);
+    --flash-success-background-color: #d4edda;
+    --flash-error-background-color: #f9d1d4;
+
+}

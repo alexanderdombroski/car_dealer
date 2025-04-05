@@ -1,15 +1,15 @@
-@import url("./flashMessages.css");
+@layer base, components, layout, utils;
 
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-}
+@import "base/normalize.css" layer(base);
+@import "base/variables.css" layer(base);
+@import "base/typography.css" layer(base);
+@import "base/global.css" layer(base);
 
-/* Remove the arrow of details */
-details > summary::-webkit-details-marker {
-  display: none;
-}
-details > summary {
-  list-style: none;
-}
+@import "components/forms.css" layer(components);
+@import "components/flash-messages.css" layer(components);
+
+@import "layout/mobile.css" layer(layout);
+@import "layout/tablet.css" layer(layout);
+@import "layout/desktop.css" layer(layout);
+
+@import "utils/utils.css" layer(utils);

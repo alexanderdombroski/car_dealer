@@ -1,0 +1,21 @@
+
+form {
+
+	& legend {
+		font-weight: bold;
+	}
+
+	& label {
+		display: block;
+		margin-top: 0.3rem;
+	}
+
+	& input:not([type=file]), & textarea, & button, & ::-webkit-file-upload-button {
+		border: solid var(--primary-dark) 0.1rem;
+
+		&:hover {
+			border-color: var(--accent-color);
+		}
+	}
+
+}

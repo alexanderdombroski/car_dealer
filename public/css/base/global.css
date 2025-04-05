@@ -1,0 +1,46 @@
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+	min-width: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:visited {
+	color: unset;
+}
+
+/* Remove the arrow of details */
+details > summary::-webkit-details-marker {
+	display: none;
+}
+details > summary {
+	list-style: none;
+}
+
+nav > ul {
+	display: flex;
+	list-style-type: none;
+	padding-left: 0;
+	& > li {
+		&, & > a {
+			padding: 0.3rem;
+		}
+		& > a, & > a:visited {
+			font-size: 1.2rem;
+			color: var(--primary-dark);
+			text-decoration: none;
+			&:hover {
+				color: var(--accent-color);
+				text-decoration: underline;
+			}
+		}
+	}
+}
