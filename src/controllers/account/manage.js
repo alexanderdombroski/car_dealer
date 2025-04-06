@@ -27,7 +27,6 @@ export const accountManagePageController = async (req, res) => {
  * @param {express.Response} res Express Response Object
  */
 export const accountPermissionController = async (req, res) => {
-    console.log(req.params.id, req.body.permission_id);
     await accountPermissionUpdate(req.params.id, req.body.permission_id);
     req.flash("success", "Updated user permission");
     res.redirect("/account/manage");

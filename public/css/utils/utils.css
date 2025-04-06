@@ -1,5 +1,8 @@
 
 .own-today {
+  display: inline-block;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
   background-color: var(--accent-color);
   color: var(--primary-light);
   font-size: 2rem;
@@ -27,4 +30,24 @@
   .span {
     grid-column: 1/4;
   }
+}
+
+.gallery {
+  background-color: var(--primary-light-faded);
+
+  & *:has(img) {
+    height: 15rem;
+    position: relative;
+    overflow: hidden;
+    border-radius: 1rem;
+
+    & img {
+      width: unset;
+      height: unset;
+      max-height: 100%;
+      position: absolute;
+      transform: translateX(-50%);
+    }
+  }
+
 }

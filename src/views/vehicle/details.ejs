@@ -48,13 +48,18 @@
             <% } %>
         </details>
     <% } %>
-    <% vehicle.image_paths.forEach(path => { %>
-        <img src="<%= path %>" alt="another image of a <%= vehicle.make %> <%= vehicle.model %>">
-    <% }) %>
-    <% if (!vehicle.is_sold) { %>
-        <a href="/vehicle/<%= vehicle.vehicle_id %>/inquiry" class="own-today">Own Today</a>
-    <% } %>
 </section>
+<section class="gallery">
+    <h2 class="span">Images</h2>
+    <% vehicle.image_paths.forEach(path => { %>
+        <article>
+            <img src="<%= path %>" alt="another image of a <%= vehicle.make %> <%= vehicle.model %>">
+        </article>
+    <% }) %>
+</section>
+<% if (!vehicle.is_sold) { %>
+    <a href="/vehicle/<%= vehicle.vehicle_id %>/inquiry" class="own-today">Own Today</a>
+<% } %>
 <section>
     <% if (vehicle.is_sold && user.user_id === vehicle.user_id) { %>
         <h2>Submit a Repair Request</h2>
