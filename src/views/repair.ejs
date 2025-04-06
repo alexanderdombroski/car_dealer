@@ -1,0 +1,28 @@
+<section>
+  <h1>Upcoming Repairs</h1>
+  <% repairs.forEach(repair => { %>
+    <article>
+      <h2><%= repair.subject %> - <%- calendarFormat(repair.created_at) %></h2>
+      <p>Last Update: <%= repair.status %> <%- calendarFormat(repair.updated_at) %></p>
+      <details>
+        <summary>More Info</summary>
+        <ul>
+          <li>For: <%= repair.first_name %> <%= repair.last_name %></li>
+          <li><a href="/vehicle/<%= repair.vehicle_id %>">Vehicle: <%= repair.year %> <%= repair.model %></a></li>
+          <li>Description: <%= repair.desc %></li>
+        </ul>
+        <form action="/repair/<%= repair.request_id %>" method="post">
+          <input type="hidden" name="_method" value="patch">
+          <label for="status">Status:</label>
+          <input list="status-list" id="status<%= repair.status_id %>" name="status" type="search" required>
+          <button type="submit">Update Status</button>
+        </form>
+      </details>
+    </article>
+    <% }) %>
+  </section>
+<datalist id="status-list">
+    <% statuses.forEach(c => { %>
+        <option value="<%= c.status %>" data-id="<%= c.status_id %>"></option>
+    <% }) %>
+</datalist>

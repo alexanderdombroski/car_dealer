@@ -1,5 +1,6 @@
 import express from "express";
-import { repairRequestCreate, repairRequestUpdate } from "../models/repair.js";
+import { repairRequestCreate, repairRequestFullList, repairRequestUpdate, statusList } from "../models/repair.js";
+import { calendarFormat } from "../utils/date.js";
 
 /**
  * Renders Repair Management Page
@@ -8,7 +9,11 @@ import { repairRequestCreate, repairRequestUpdate } from "../models/repair.js";
  * @param {express.Response} res Express Response Object
  */
 export const repairManagementPageController = async (req, res) => {
-    
+    const repairs = await repairRequestFullList();
+    const statuses = await statusList();
+    req.useSearchInputs();
+
+    res.render('repair', {title: "Upcoming Repairs", repairs, calendarFormat, statuses})
 };
 
 /**
@@ -29,6 +34,7 @@ export const repairRequestHandlerController = async (req, res) => {
  * @param {express.Response} res Express Response Object
  */
 export const repairStatusController = async (req, res) => {
-
+    await repairRequestUpdate(req.params.id, req.body.status_id);
+    req.flash("Status successfully updated");
     res.redirect('/repair');
 };

@@ -65,7 +65,7 @@ CREATE TABLE public."user" (
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Create Model Table
@@ -88,7 +88,7 @@ CREATE TABLE public.vehicle (
     is_featured BOOLEAN NOT NULL,
     is_sold BOOLEAN NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Create Vehicle Image Table
@@ -105,7 +105,7 @@ CREATE TABLE public.review (
     vehicle_id INTEGER NOT NULL REFERENCES public.vehicle(vehicle_id) ON DELETE CASCADE,
     message TEXT NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Create Inquiry Table
@@ -128,7 +128,7 @@ CREATE TABLE public.repair_request (
     "desc" TEXT NOT NULL,
     status_id INTEGER NOT NULL REFERENCES public.repair_request_status(status_id) DEFAULT 1,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Populate Repair Request Status
