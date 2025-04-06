@@ -15,4 +15,16 @@
 
 .centered {
   text-align: center;
+  display: block;
+}
+
+@media screen and (min-width: 40rem) {
+  .span {
+    grid-column: 1/3;
+  }
+}
+@media screen and (min-width: 75rem) {
+  .span {
+    grid-column: 1/4;
+  }
 }

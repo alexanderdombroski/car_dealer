@@ -1,8 +1,17 @@
 
 form {
+	text-align: center;
 
 	& legend {
 		font-weight: bold;
+	}
+
+	& input[type=checkbox] {
+		display: inline-block;
+		text-align: center;
+		& + label {
+			display: inline-block;
+		}
 	}
 
 	& label, & button, & input, & textarea {
@@ -18,10 +27,14 @@ form {
 	& button, & input[type=submit], & ::-webkit-file-upload-button {
 		background-color: var(--accent-color);
 		color: var(--primary-light);
+		&:hover {
+			color: var(--secondary-color);
+		}
 	}
 
 	& button, & input[type=submit] {
 		margin-top: 1rem;
+		margin-bottom: 2rem;
 	}
 
 	& input:not([type=file]), & textarea, & button, & ::-webkit-file-upload-button {
@@ -36,9 +49,12 @@ form {
 	&.searchbar {
 		display: flex;
 		align-items: center;
+		justify-content: center;
 		
 		& > input {
 			height: 2rem;
+			width: 18rem;
+			margin: 0;
 			background-color: var(--primary-light);
 		}
 

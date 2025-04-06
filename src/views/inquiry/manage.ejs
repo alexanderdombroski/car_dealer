@@ -1,9 +1,9 @@
-<h1>User Inquiries</h1>
+<form action="/inquiry" method="get" class="searchbar">
+  <input type="text" name="search" id="search" required placeholder="search"></input>
+  <button><label for="search"><i class="fa fa-magnifying-glass"></i></label></button>
+</form>
 <section>
-  <form action="/inquiry" method="get" class="searchbar">
-    <input type="text" name="search" id="search" required placeholder="search"></input>
-    <button><label for="search"><i class="fa fa-magnifying-glass"></i></label></button>
-  </form>
+  <h1 class="span">User Inquiries</h1>
   <%- inquiries.length === 0 ? "<p>No Inquries Found</p>" : "" %>
   <% inquiries.forEach(inquiry => { %>
     <article>

@@ -1,5 +1,5 @@
 <section>
-  <h1>Upcoming Repairs</h1>
+  <h1 class="span">Upcoming Repairs</h1>
   <% repairs.forEach(repair => { %>
     <article>
       <h2><%= repair.subject %> - <%- calendarFormat(repair.created_at) %></h2>

@@ -1,8 +1,8 @@
 <section>
-    <h1>Edit Vehicle Categories</h1>
+    <h1 class="span">Edit Vehicle Categories</h1>
     <% categories.forEach(category => { %>
         <article>
-            <a href="/vehicle/type/<%= category.category_id %>"><%= category.name %></a>
+            <a href="/vehicle/type/<%= category.category_id %>" class="centered"><%= category.name %></a>
             <form action="/vehicle/type/<%= category.category_id %>" method="post">
                 <input type="hidden" name="_method" value="put">
                 <label for="name">Name:</label>

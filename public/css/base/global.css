@@ -18,7 +18,7 @@ img {
 	width: 100%;
 }
 
-a, a:visited {
+a, a:visited, details > summary {
 	text-decoration: none;
 	color: var(--accent2-color);
 
