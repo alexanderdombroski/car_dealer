@@ -1,5 +1,6 @@
 import express from "express";
 import { userExists, verifyUserCredentials } from "../../models/account.js";
+import { validate } from "../../utils/string.js";
 
 /**
  * Renders login page
@@ -21,7 +22,7 @@ export const loginPageController = async (req, res) => {
  * @param {express.Response} res Express Response Object
  */
 export const loginHandlerController = async (req, res) => {        
-    const user = await verifyUserCredentials(req.body.username, req.body.password);
+    const user = await verifyUserCredentials(validate(req.body.username), validate(req.body.password));
     
     if (user) {
         req.session.user = user;
@@ -40,13 +41,11 @@ export const loginHandlerController = async (req, res) => {
 
     if (await userExists(req.body.username)) {
         req.flash("error", "Incorrect Password");
-        res.redirect("/account/login");
-        return;
+        return res.redirect("/account/login");
     }
     
     req.flash("error", "Invalid Username");
-    res.redirect("/account/login");
-    return;
+    return res.redirect("/account/login");
 };
 
 /**

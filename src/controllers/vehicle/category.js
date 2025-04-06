@@ -1,5 +1,6 @@
 import express from "express";
 import { categoryDelete, categoryList, categoryUpdate } from "../../models/category.js";
+import { validate } from "../../utils/string.js";
 
 
 
@@ -22,7 +23,7 @@ export const categoryPageController = async (_req, res) => {
  * @param {express.Response} res Express Response Object
  */
 export const categoryEditController = async (req, res) => {
-    await categoryUpdate(req.params.id, req.body.name);
+    await categoryUpdate(req.params.id, validate(req.body.name));
 
     req.flash("success", "Category successfully updated.")
     res.redirect('/vehicle/type');

@@ -3,6 +3,7 @@ import { getVehicles, updateVehicleOwnership } from "../models/vehicle.js";
 import { userDetails } from "../models/account.js";
 import { inquiryDelete, inquiryFullList, inquiryInsert, inquiryResponded } from "../models/inquiry.js";
 import { caledarWithTimeFormat } from "../utils/date.js";
+import { validate } from "../utils/string.js";
 
 /**
  * Renders Inquiry Page
@@ -25,7 +26,7 @@ export const inquiryPageController = async (req, res) => {
  * @param {express.Response} res Express Response Object
  */
 export const inquiryHandlerController = async (req, res) => {
-    await inquiryInsert(req.session.user.user_id, req.params.id, req.body.subject, req.body.message);
+    await inquiryInsert(req.session.user.user_id, req.params.id, validate(req.body.subject), validate(req.body.message));
     req.flash("success", "Inquiry successfully sent!");
     res.redirect("/account");
 };

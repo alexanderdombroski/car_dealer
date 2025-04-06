@@ -8,6 +8,7 @@ import { caledarWithTimeFormat } from '../../utils/date.js';
 import { fileExists } from '../../utils/fileSystem.js';
 import { getVehicleTypeNav } from '../../utils/templates.js';
 import { categoryList, categoryNew, vehicleCategoryUpdate } from '../../models/category.js';
+import { validate } from '../../utils/string.js';
 
 /**
  * Display Page with all Vehicles
@@ -48,12 +49,12 @@ export const vehicleDetailsPageController = async (req, res) => {
 export const vehicleDetailsUpdateController = async (req, res) => {
     let categoryId = req.body.category_id;
     if (categoryId === undefined) {
-        categoryId = await categoryNew(req.body.category);
+        categoryId = await categoryNew(validate(req.body.category));
     }
 
     Promise.all([
         vehicleCategoryUpdate(req.params.id, categoryId),
-        vehicleUpdate(req.params.id, req.body.mileage, req.body.price, req.body.desc, !!req.body.is_featured, !!req.body.is_sold)
+        vehicleUpdate(req.params.id, validate(req.body.mileage), validate(req.body.price), validate(req.body.desc), !!req.body.is_featured, !!req.body.is_sold)
     ]);
 
     req.flash("success", "Vehicle Listing Updated")

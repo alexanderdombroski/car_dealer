@@ -3,6 +3,7 @@ import { vehicleMakesList, vehicleModelsList, vehicleNewImages, vehicleNewListin
 import fs from "fs";
 import path from "path";
 import { categoryNew, categoryList } from "../../models/category.js";
+import { validate } from "../../utils/string.js";
 
 /**
  * Render Vehicle Upload Page
@@ -31,26 +32,26 @@ export const vehicleUploadController = async (req, res) => {
 
     let categoryId = req.body.category_id;
     if (categoryId === undefined) {
-        categoryId = await categoryNew(req.body.category);
+        categoryId = await categoryNew(validate(req.body.category));
     }
 
     let makeId = req.body.make_id;
     if (makeId === undefined) {
-        makeId = await vehicleNewMake(req.body.make);
+        makeId = await vehicleNewMake(validate(req.body.make));
     }
 
     let modelId = req.body.model_id;
     if (modelId === undefined) {
-        modelId = await vehicleNewModel(makeId, categoryId, req.body.model);
+        modelId = await vehicleNewModel(makeId, categoryId, validate(req.body.model));
     }
 
     const vid = await vehicleNewListing(
         req.session.user.user_id,
         modelId,
-        req.body.year,
-        req.body.mileage,
-        req.body.desc,
-        req.body.price
+        validate(req.body.year),
+        validate(req.body.mileage),
+        validate(req.body.desc),
+        validate(req.body.price)
     );
 
     const oldPaths = req.files.images.map(file => file.filepath);

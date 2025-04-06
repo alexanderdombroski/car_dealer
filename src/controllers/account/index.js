@@ -5,6 +5,7 @@ import { inquiryList } from "../../models/inquiry.js";
 import { accountEmailUpdate } from "../../models/account.js";
 import { getVehicles } from "../../models/vehicle.js";
 import { repairRequestList } from "../../models/repair.js";
+import { validate } from "../../utils/string.js";
 
 /**
  * Renders Account Page
@@ -13,11 +14,13 @@ import { repairRequestList } from "../../models/repair.js";
  * @param {express.Response} res Express Response Object
  */
 export const accountController = async (req, res) => {
+    const userId = req.session.user.user_id;
+
     const [reviews, inquiries, vehicles, repairs] = await Promise.all([
-        reviewsListUser(req.session.user.user_id),
-        inquiryList(req.session.user.user_id),
-        getVehicles({ userId: req.session.user.user_id, isSold: true }),
-        repairRequestList(req.session.user.user_id)
+        reviewsListUser(userId),
+        inquiryList(userId),
+        getVehicles({ userId, isSold: true }),
+        repairRequestList(userId)
     ]);
 
     res.render("account/index", {title: "Account", user: req.session.user, calendarFormat, caledarWithTimeFormat, reviews, inquiries, vehicles, repairs});
@@ -31,7 +34,7 @@ export const accountController = async (req, res) => {
  * @param {express.Response} res Express Response Object
  */
 export const accountEmailController = async (req, res) => {
-    await accountEmailUpdate(req.session.user.user_id, req.body.email);
+    await accountEmailUpdate(req.session.user.user_id, validate(req.body.email));
     req.session.user.email = req.body.email;
     req.flash("success", "Email Successfully Updated");
     res.redirect('/account');

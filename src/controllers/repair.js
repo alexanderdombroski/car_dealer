@@ -1,6 +1,7 @@
 import express from "express";
 import { repairRequestCreate, repairRequestFullList, repairRequestUpdate, statusList } from "../models/repair.js";
 import { calendarFormat } from "../utils/date.js";
+import { validate } from "../utils/string.js";
 
 /**
  * Renders Repair Management Page
@@ -23,7 +24,7 @@ export const repairManagementPageController = async (req, res) => {
  * @param {express.Response} res Express Response Object
  */
 export const repairRequestHandlerController = async (req, res) => {
-    await repairRequestCreate(req.session.user.user_id, req.body.vehicle_id, req.body.subject, req.body.desc);
+    await repairRequestCreate(req.session.user.user_id, req.body.vehicle_id, validate(req.body.subject), validate(req.body.desc));
     res.redirect("/account");
 };
 
