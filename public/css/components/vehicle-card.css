@@ -1,11 +1,12 @@
 .vehicle-card {
-  background-color: var(--primary-light-faded);
+  background-color: var(--accent-color);
+  border-radius: 2rem;
   padding: 0.5rem;
   & > a {
     text-decoration: none;
     
     & > figure {
-      background-color: var(--primary-light-faded);
+      background-color: var(--accent-color);
       margin: 0.5rem;
       overflow: hidden;
       position: relative;
@@ -40,6 +41,12 @@
     & > div {
       display: flex;
       justify-content: space-evenly;
+
+      & > p {
+        background-color: var(--primary-light-transparent);
+        padding: 0.1rem;
+        border-radius: 0.5rem;
+      }
     }
   }
 }

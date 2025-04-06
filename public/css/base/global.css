@@ -55,3 +55,15 @@ nav > ul {
 		}
 	}
 }
+
+main {
+	background-image: linear-gradient(
+		to bottom, var(--primary-light-slight-transparent), 
+		var(--primary-light-slight-transparent)), 
+		url("/images/site/checkerboard.jpg");
+	background-size: contain;
+}
+
+main ul {
+	text-align: left;
+}

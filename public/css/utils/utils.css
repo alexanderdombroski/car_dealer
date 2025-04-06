@@ -33,7 +33,7 @@
 }
 
 .gallery {
-  background-color: var(--primary-light-faded);
+  background-color: var(--accent-color);
 
   & *:has(img) {
     height: 15rem;

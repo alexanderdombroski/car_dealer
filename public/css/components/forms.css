@@ -20,6 +20,10 @@ form {
 		text-align: center;
 	}
 
+	& input:not([type=file]), & textarea {
+		background-color: var(--primary-light);
+	}
+
 	& label {
 		margin-top: 0.3rem;
 	}

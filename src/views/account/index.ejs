@@ -29,7 +29,7 @@
     </section>
 <% } %>
 <section>
-    <h2>Your Review History</h2>
+    <h2 class="span">Your Review History</h2>
     <%- include('../partials/reviews.ejs') %>
 </section>
 <% if (vehicles.length !== 0) { %>
@@ -42,7 +42,7 @@
 <% } %>
 <% if (repairs.length !== 0) { %>
     <section>
-        <h2>Repair History</h2>
+        <h2 class="span">Repair History</h2>
         <% repairs.forEach(repair => { %>
             <article>
                 <h3><%= repair.subject %> - <%- calendarFormat(repair.created_at) %></h3>
