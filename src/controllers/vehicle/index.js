@@ -19,7 +19,7 @@ export const vehiclesPageController = async (req, res) => {
     const types = await categoryList();
     const vehicleTypeNav = getVehicleTypeNav(types);
     
-    const vehicles = await getVehicles({categoryId: req.params.id, search: req.query.search});
+    const vehicles = await getVehicles({categoryId: req.params.id, search: req.query.search, isSold: false});
     res.render("vehicle/index", {title: "Listings", vehicles, vehicleTypeNav});
 };
 
@@ -91,6 +91,6 @@ export const vehiclesUncategorizedPageController = async (_req, res) => {
     const types = await categoryList();
     const vehicleTypeNav = getVehicleTypeNav(types);
     
-    const vehicles = await getVehicles({categoryId: null});
+    const vehicles = await getVehicles({categoryId: null, isSold: false});
     res.render("vehicle/index", {title: "Listings", vehicles, vehicleTypeNav});
 };

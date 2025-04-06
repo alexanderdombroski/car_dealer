@@ -11,7 +11,7 @@ import { caledarWithTimeFormat } from "../utils/date.js";
  * @param {express.Response} res Express Response Object
  */
 export const inquiryPageController = async (req, res) => {
-    const vehicle = (await getVehicles(null, req.params.id))[0]
+    const vehicle = (await getVehicles({vehicleId: req.params.id}))[0];
     const owner = await userDetails(vehicle.user_id);
 
     res.render("inquiry/index", {title: "Inquiry Request", vehicle, owner});

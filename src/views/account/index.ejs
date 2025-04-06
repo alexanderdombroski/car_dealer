@@ -32,3 +32,27 @@
     <h2>Your Review History</h2>
     <%- include('../partials/reviews.ejs') %>
 </section>
+<% if (vehicles.length !== 0) { %>
+    <section>
+        <h2>Your Vehicles</h2>
+        <% vehicles.forEach(vehicle => { %>
+            <%- include('../partials/vehicle-card', { vehicle }) %>
+        <% }) %>
+    </section>
+<% } %>
+<% if (repairs.length !== 0) { %>
+    <section>
+        <h2>Repair History</h2>
+        <% repairs.forEach(repair => { %>
+            <article>
+                <h3><%= repair.subject %> - <%- calendarFormat(repair.created_at) %></h3>
+                <ul>
+                    <li>For: <%= repair.year %> <%= repair.model %></li>
+                    <li>Updated At: <%- calendarFormat(repair.updated_at) %></li>
+                    <li>Status: <%= repair.status %></li>
+                    <li>Description: <%= repair.desc %></li>
+                </ul>
+            </article>
+        <% }) %>
+    </section>
+<% } %>

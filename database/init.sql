@@ -126,7 +126,7 @@ CREATE TABLE public.repair_request (
     vehicle_id INTEGER NOT NULL REFERENCES public.vehicle(vehicle_id) ON DELETE CASCADE,
     subject VARCHAR(255) NOT NULL,
     "desc" TEXT NOT NULL,
-    status INTEGER NOT NULL REFERENCES public.repair_request_status(status_id),
+    status_id INTEGER NOT NULL REFERENCES public.repair_request_status(status_id) DEFAULT 1,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP
 );
@@ -179,7 +179,8 @@ INSERT INTO public.model (make_id, category_id, model) VALUES
 INSERT INTO public."user" (username, email, password_hash, permission, first_name, last_name) VALUES 
 ('johndoe', 'john.doe@example.com', '$2b$10$randomhashhere', 1, 'John', 'Doe'),
 ('janedoe', 'jane.doe@example.com', '$2b$10$anotherhashhere', 2, 'Jane', 'Doe'),
-('admin123', 'admin@example.com', '$argon2id$v=19$m=65536,t=3,p=4$sGJCsB84+LsoffOXKHLElg$81FOP7QAB9jx7TnMayq2l+25fanlk0ESkH30djU6BMg', 3, 'Admin', 'Of Power');
+('admin123', 'admin@example.com', '$argon2id$v=19$m=65536,t=3,p=4$sGJCsB84+LsoffOXKHLElg$81FOP7QAB9jx7TnMayq2l+25fanlk0ESkH30djU6BMg', 3, 'Admin', 'Of Power'),
+('test', 'test@example.com', '$argon2id$v=19$m=65536,t=3,p=4$xwHi1sng/Ebzw7hWFBUT1w$YdMaWUIwUoYInK/R36XH9L1CeEirlbEdwoi1T0cWDR4', 1, 'test', 'test');
 
 -- Populate Vehicles
 INSERT INTO public.vehicle (user_id, model_id, year, mileage, "desc", price, is_featured, is_sold) VALUES 
@@ -196,7 +197,7 @@ INSERT INTO public.vehicle (user_id, model_id, year, mileage, "desc", price, is_
 (2, 11, 2010, 40000, 'Massive Monster Truck', 95000.00, true, false),
 (1, 12, 1970, 546060, 'Mystery solving van', 45000.00, false, false),
 (2, 13, 2015, 156000, 'Custom Surfer Van', 35000.00, false, false),
-(1, 14, 2019, 95000, 'Robust Jeep Wrangler', 42000.00, false, false);
+(4, 14, 2019, 95000, 'Robust Jeep Wrangler', 42000.00, false, true);
 
 -- Populate Vehicle Images
 INSERT INTO public.vehicle_image (vehicle_id, image_path) VALUES 
@@ -242,7 +243,7 @@ INSERT INTO public.inquiry (user_id, vehicle_id, subject, message) VALUES
 (1, 3, 'Batmobile Details', 'Can you provide more information about this unique vehicle?');
 
 -- Populate Repair Requests
-INSERT INTO public.repair_request (user_id, vehicle_id, subject, "desc", status) VALUES 
+INSERT INTO public.repair_request (user_id, vehicle_id, subject, "desc", status_id) VALUES 
 (1, 6, 'DeLorean Flux Capacitor Check', 'Need to verify time travel mechanism is functioning correctly', 1),
 (2, 11, 'Monster Truck Suspension', 'Requires full suspension system inspection', 2);
 

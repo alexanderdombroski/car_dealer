@@ -3,6 +3,8 @@ import { caledarWithTimeFormat, calendarFormat } from "../../utils/date.js";
 import { reviewsListUser } from "../../models/review.js";
 import { inquiryList } from "../../models/inquiry.js";
 import { accountEmailUpdate } from "../../models/account.js";
+import { getVehicles } from "../../models/vehicle.js";
+import { repairRequestList } from "../../models/repair.js";
 
 /**
  * Renders Account Page
@@ -11,9 +13,14 @@ import { accountEmailUpdate } from "../../models/account.js";
  * @param {express.Response} res Express Response Object
  */
 export const accountController = async (req, res) => {
-    const reviews = await reviewsListUser(req.session.user.user_id);
-    const inquiries = await inquiryList(req.session.user.user_id);
-    res.render("account/index", {title: "Account", user: req.session.user, calendarFormat, caledarWithTimeFormat, reviews, inquiries});
+    const [reviews, inquiries, vehicles, repairs] = await Promise.all([
+        reviewsListUser(req.session.user.user_id),
+        inquiryList(req.session.user.user_id),
+        getVehicles({ userId: req.session.user.user_id, isSold: true }),
+        repairRequestList(req.session.user.user_id)
+    ]);
+
+    res.render("account/index", {title: "Account", user: req.session.user, calendarFormat, caledarWithTimeFormat, reviews, inquiries, vehicles, repairs});
 };
 
 

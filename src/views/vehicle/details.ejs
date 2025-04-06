@@ -48,23 +48,38 @@
     <% vehicle.image_paths.forEach(path => { %>
         <img src="<%= path %>" alt="another image of a <%= vehicle.make %> <%= vehicle.model %>">
     <% }) %>
-    <p>Interested in learning more about this car? <a href="/vehicle/<%= vehicle.vehicle_id %>/inquiry">Send an inquiry</a>.</p>
-</section>
-<section>
-    <% if (isLoggedIn) { %>
-        <h2>Submit Your Review</h2>
-        
-        <form action="/vehicle/<%= vehicle.vehicle_id %>/review" method="POST">
-            <label for="message">Your Review:</label>
-            <textarea id="message" name="message" rows="5" cols="50" required></textarea>
-        
-            <button type="submit">Submit Review</button>
-        </form>
-    <% } else { %>
-        <p>To leave a review or inquiry, <a href="/account/login">log in</a></p>
+    <% if (!vehicle.is_sold) { %>
+        <p>Interested in learning more about this car? <a href="/vehicle/<%= vehicle.vehicle_id %>/inquiry">Send an inquiry</a>.</p>
     <% } %>
 </section>
 <section>
-    <h2>Popular Reviews</h2>
-    <%- include('../partials/reviews.ejs') %>
+    <% if (vehicle.is_sold && user.user_id === vehicle.user_id) { %>
+        <h2>Submit a Repair Request</h2>
+        <form action="/repair" method="post">
+            <label for="subject">Subject:</label>
+            <input type="hidden" name="vehicle_id" value="<%= vehicle.vehicle_id %>">
+            <input type="text" name="subject" id="subject" required></input>
+            <label for="r_desc">Description:</label>
+            <textarea name="desc" id="r_desc" required></textarea>
+            <input type="submit">
+        </form>
+    <% } else if (!vehicle.is_sold) { %>
+        <% if (isLoggedIn) { %>
+            <h2>Submit Your Review</h2>
+            
+            <form action="/vehicle/<%= vehicle.vehicle_id %>/review" method="POST">
+                <label for="message">Your Review:</label>
+                <textarea id="message" name="message" rows="5" cols="50" required></textarea>
+                <button type="submit">Submit Review</button>
+            </form>
+        <% } else { %>
+            <p>To leave a review or inquiry, <a href="/account/login">log in</a></p>
+        <% } %>
+    <% } %>
 </section>
+<% if (!vehicle.is_sold) { %>
+    <section>
+        <h2>Popular Reviews</h2>
+        <%- include('../partials/reviews.ejs') %>
+    </section>
+<% } %>

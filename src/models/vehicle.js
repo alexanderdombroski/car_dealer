@@ -40,6 +40,14 @@ export async function getVehicles(filterValues = {}) {
         filters.push("is_featured = " + p());
         placeholders.push(filterValues.isFeatured);
     }
+    if (filterValues?.userId) {
+        filters.push("user_id = " + p());
+        placeholders.push(filterValues.userId);
+    }
+    if (filterValues?.isSold !== undefined) {
+        filters.push("is_sold = " + p());
+        placeholders.push(filterValues.isSold);
+    }
     if (filterValues?.search) {
         const ph = p();
         filters.push(`
