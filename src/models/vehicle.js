@@ -163,3 +163,13 @@ export async function vehicleImages(vehicleId) {
     `;
     return (await dbClient.query(query, [vehicleId])).rows;
 }
+
+export async function updateVehicleOwnership(vehicleId, userId) {
+    const query = `
+        UPDATE public.vehicle
+        SET user_id = $2,
+            is_sold = true
+        WHERE vehicle_id = $1;
+    `;
+    return await dbClient.query(query, [vehicleId, userId]);    
+}

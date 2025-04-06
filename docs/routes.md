@@ -37,12 +37,11 @@
 
 ## Vehicle Inquiry Router
 
+- [X] GET - /inquiry
 - [X] GET - /vehicle/:id/inquiry
 - [X] POST - /vehicle/:id/inquiry
-- [ ] GET - /inquiry
-- [ ] PUT - /inquiry/:id
-- [ ] PATCH - /inquiry/:id
-- [ ] DELETE - /inquiry/:id
+- [X] PATCH - /inquiry/:iid
+- [X] DELETE - /inquiry/:iid
 
 ## Review Router
 
@@ -53,7 +52,6 @@
 ## Repair Router
 
 - [ ] GET - /repair
-- [ ] POST - /repair
-- [ ] GET - /repair/manage
+- [ ] POST - /repair/:id
 - [ ] PATCH - /repair/:id
 - [ ] DELETE - /repair/:id

@@ -7,8 +7,8 @@
                 <summary>Edit Message</summary>
                 <form action="/vehicle/<%= review.vehicle_id %>/review/<%= review.review_id %>" method="post">
                     <input type="hidden" name="_method" value="put">
-                    <label for="message">Updated Message:</label>
-                    <textarea name="message" id="message" required><%= review.message %></textarea>
+                    <label for="message<%= review.review_id %>">Updated Message:</label>
+                    <textarea name="message" id="message<%= review.review_id %>" required><%= review.message %></textarea>
                     <button type="submit">Update</button>
                 </form>
                 <form action="/vehicle/<%= review.vehicle_id %>/review/<%= review.review_id %>" method="post">

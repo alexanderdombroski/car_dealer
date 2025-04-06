@@ -111,11 +111,11 @@ CREATE TABLE public.review (
 -- Create Inquiry Table
 CREATE TABLE public.inquiry (
     inquiry_id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES public."user"(user_id) ON DELETE SET NULL,
+    user_id INTEGER NOT NULL REFERENCES public."user"(user_id) ON DELETE CASCADE,
     vehicle_id INTEGER NOT NULL REFERENCES public.vehicle(vehicle_id) ON DELETE CASCADE,
     subject VARCHAR(255) NOT NULL,
     message TEXT NOT NULL,
-    responded BOOLEAN NOT NULL,
+    responded BOOLEAN NOT NULL DEFAULT FALSE,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 

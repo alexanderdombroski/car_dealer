@@ -23,7 +23,6 @@ import homeRoutes from './src/routes/index.js';
 import accountRoutes from './src/routes/account.js';
 import vehicleRoutes from './src/routes/vehicle/index.js';
 import repairRoutes from './src/routes/repair.js';
-import inquiryRoutes from './src/routes/inquiry.js';
 
 /**
  * Global Variables
@@ -77,7 +76,6 @@ app.use('/', homeRoutes);
 app.use('/account', accountRoutes);
 app.use('/vehicle', vehicleRoutes);
 app.use('/repair', repairRoutes);
-app.use('/inquiry', inquiryRoutes);
 
 // Error Handling
 app.use(errorThrowing)

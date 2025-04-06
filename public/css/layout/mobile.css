@@ -6,9 +6,7 @@ body {
 		align-items: top;
 		background-color: var(--secondary-color);
 		
-		& > form {
-			display: flex;
-			align-items: center;
+		& > .searchbar {
 			justify-content: right;
 			position: absolute;
 			right: 5rem;
@@ -16,21 +14,7 @@ body {
 
 			& > input {
 				width: 9rem;
-				height: 2rem;
 			}
-			
-			& > button {
-			border: none;
-				background-color: transparent;
-				margin: 0;
-				padding: 0;
-
-				& > label {
-					margin: 0;
-					margin-left: 0.5rem;
-				}
-			}
-
 		}
 
 		& > a, & img {

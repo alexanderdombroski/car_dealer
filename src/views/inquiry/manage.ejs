@@ -1,0 +1,33 @@
+<h1>User Inquiries</h1>
+<section>
+  <form action="/inquiry" method="get" class="searchbar">
+    <input type="text" name="search" id="search" required placeholder="search"></input>
+    <button><label for="search"><i class="fa fa-magnifying-glass"></i></label></button>
+  </form>
+  <%- inquiries.length === 0 ? "<p>No Inquries Found</p>" : "" %>
+  <% inquiries.forEach(inquiry => { %>
+    <article>
+      <h2><%= inquiry.first_name %> <%= inquiry.last_name %> - <%- caledarWithTimeFormat(inquiry.created_at) %></h2>
+      <h3><%= inquiry.subject %></h3>
+      <a href="/vehicle/<%= inquiry.vehicle_id %>">Vehicle: <%= inquiry.year %> <%= inquiry.model %> for $<%= inquiry.price %></a>
+      
+      <details>
+        <summary>Show More</summary>
+        <p>Message: <%= inquiry.message %></p>
+        <form action="/vehicle/<%= inquiry.vehicle_id %>/inquiry/<%= inquiry.inquiry_id %>" method="post">
+          <input type="hidden" name="_method" value="patch">
+          <input type="checkbox" name="responded" id="responded<%= inquiry.inquiry_id %>" <%- inquiry.responded ? "checked" : "" %>></input>
+          <label for="responded<%= inquiry.inquiry_id %>">Reponded</label>
+          <button type="submit">Update Responded</button>
+        </form>
+        <form action="/vehicle/<%= inquiry.vehicle_id %>/inquiry/<%= inquiry.inquiry_id %>" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <input type="hidden" name="user_id", value="<%= inquiry.user_id %>">
+          <input type="checkbox" name="sell" id="sell<%= inquiry.inquiry_id %>"></input>
+          <label for="sell<%= inquiry.inquiry_id %>">Purchased Vehicle</label>
+          <button type="submit">Delete</button>
+        </form>
+      </details>
+    </article>
+  <% }) %>
+</section>

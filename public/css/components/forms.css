@@ -18,4 +18,24 @@ form {
 		}
 	}
 
+	&.searchbar {
+		display: flex;
+		align-items: center;
+
+		& > input {
+			height: 2rem;
+		}
+
+		& > button {
+			border: none;
+			background-color: transparent;
+			margin: 0;
+			padding: 0;
+
+			& > label {
+				margin: 0;
+				margin-left: 0.5rem;
+			}
+		}
+	}
 }

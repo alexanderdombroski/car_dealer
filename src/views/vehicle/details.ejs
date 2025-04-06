@@ -24,12 +24,12 @@
                 <%- include('../partials/category-search-input') %>
                 
                 <% if (user?.permission > 2) { %>
-                    <input type="checkbox" name="is_featured" id="is_featured" <%= vehicle.is_featured ? "checked" : "" %>></input>
+                    <input type="checkbox" name="is_featured" id="is_featured" <%- vehicle.is_featured ? "checked" : "" %>></input>
                     <label for="is_featured">Featured</label>
                 <% } %>
                 
 
-                <input type="checkbox" name="is_sold" id="is_sold" <%= vehicle.is_sold ? "checked" : "" %>></input>
+                <input type="checkbox" name="is_sold" id="is_sold" <%- vehicle.is_sold ? "checked" : "" %>></input>
                 <label for="is_sold">Purchased</label>
                 
                 <label for="desc">Description:</label>
