@@ -1,0 +1,45 @@
+.vehicle-card {
+  background-color: var(--primary-light-faded);
+  padding: 0.5rem;
+  & > a {
+    text-decoration: none;
+    
+    & > figure {
+      background-color: var(--primary-light-faded);
+      margin: 0.5rem;
+      overflow: hidden;
+      position: relative;
+      height: 15rem;
+      border-radius: 1rem;
+
+      & > img {
+        position: absolute;
+        height: 100%;
+        width: auto;
+      }
+
+      & > figcaption {
+        position: absolute;
+        bottom: 0;
+        white-space: nowrap;
+        border-radius: 0.3rem;
+        padding: 0.1rem;
+        background-color: var(--primary-light-transparent);
+      }
+
+      & > * {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  
+    & > div {
+      display: flex;
+      justify-content: space-evenly;
+    }
+  }
+}

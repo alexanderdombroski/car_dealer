@@ -8,7 +8,7 @@ import express from "express";
  * @param {express.NextFunction} next Express Next Function
  */
 export const errorThrowing = async (req, res, next) => {
-    const error = new Error(req.host + req.originalUrl + ' Page Not Found');
+    const error = new Error("Couldn't find page: " + req.host + req.originalUrl);
     error.statusCode = 404;
     next(error);
 };

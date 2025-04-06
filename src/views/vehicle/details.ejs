@@ -10,6 +10,9 @@
     <p><%= vehicle.desc %></p>
     <p>$<%= vehicle.price %></p>
     <p><%= vehicle.mileage %> miles</p>
+    <% if (!vehicle.is_sold) { %>
+        <p>Interested in learning more about this car? <a href="/vehicle/<%= vehicle.vehicle_id %>/inquiry">Send an inquiry</a>.</p>
+    <% } %>
     <% if (user?.permission > 1) { %>
         <details>
             <summary>Edit</summary>
@@ -49,7 +52,7 @@
         <img src="<%= path %>" alt="another image of a <%= vehicle.make %> <%= vehicle.model %>">
     <% }) %>
     <% if (!vehicle.is_sold) { %>
-        <p>Interested in learning more about this car? <a href="/vehicle/<%= vehicle.vehicle_id %>/inquiry">Send an inquiry</a>.</p>
+        <a href="/vehicle/<%= vehicle.vehicle_id %>/inquiry" class="own-today">Own Today</a>
     <% } %>
 </section>
 <section>

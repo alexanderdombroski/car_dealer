@@ -1,8 +1,12 @@
-<a href="/vehicle/<%= vehicle.vehicle_id %>">
-    <figure>
-        <img src="<%= vehicle.image_paths[0] %>" alt="<%= vehicle.year %> <%= vehicle.make %> <%= vehicle.model %> thumbnail">
-        <figcaption><%= vehicle.year %> <%= vehicle.make %> <%= vehicle.model %></figcaption>
-    </figure>
-    <p>$<%= vehicle.price %></p>
-    <p><%= vehicle.mileage %> miles</p>
-</a>
+<article class="vehicle-card">
+    <a href="/vehicle/<%= vehicle.vehicle_id %>">
+        <figure>
+            <img src="<%= vehicle.image_paths[0] %>" alt="<%= vehicle.year %> <%= vehicle.make %> <%= vehicle.model %> thumbnail">
+            <figcaption><%= vehicle.year %> <%= vehicle.make %> <%= vehicle.model %></figcaption>
+        </figure>
+        <div>
+            <p>$<%= vehicle.price %></p>
+            <p><%= vehicle.mileage %> miles</p>
+        </div>
+    </a>
+</article>

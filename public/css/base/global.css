@@ -7,14 +7,24 @@
 
 body {
 	min-width: none;
+	background-color: var(--primary-light);
 }
 
-a {
+h1 {
+	text-align: center;
+}
+
+img {
+	width: 100%;
+}
+
+a, a:visited {
 	text-decoration: none;
-}
+	color: var(--accent2-color);
 
-a:visited {
-	color: unset;
+	&:hover {
+		text-decoration: underline;
+	}
 }
 
 /* Remove the arrow of details */

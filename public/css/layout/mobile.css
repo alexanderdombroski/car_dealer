@@ -1,9 +1,12 @@
 body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+
 	& > header {
 		display: flex;
 		padding: 1rem;
 		text-align: right;
-		align-items: top;
 		background-color: var(--secondary-color);
 		
 		& > .searchbar {
@@ -45,6 +48,7 @@ body {
 
 	& > main {
 		padding: 1rem;
+		flex-grow: 1;
 
 		& > aside {
 			& nav > ul {
@@ -65,6 +69,22 @@ body {
 						text-decoration: none;
 					}
 				}
+			}
+		}
+
+		& > section {
+			display: grid;
+			grid-template-columns: 1fr;
+
+			& article {
+				margin-bottom: 1rem;
+			}
+		}
+
+		& form {
+			&:has(> fieldset) {
+				display: grid;
+				grid-template-columns: 1fr;
 			}
 		}
 	}

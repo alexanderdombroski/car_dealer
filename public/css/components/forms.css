@@ -5,13 +5,28 @@ form {
 		font-weight: bold;
 	}
 
-	& label {
+	& label, & button, & input, & textarea {
 		display: block;
+		margin: 0 auto;
+		text-align: center;
+	}
+
+	& label {
 		margin-top: 0.3rem;
+	}
+
+	& button, & input[type=submit], & ::-webkit-file-upload-button {
+		background-color: var(--accent-color);
+		color: var(--primary-light);
+	}
+
+	& button, & input[type=submit] {
+		margin-top: 1rem;
 	}
 
 	& input:not([type=file]), & textarea, & button, & ::-webkit-file-upload-button {
 		border: solid var(--primary-dark) 0.1rem;
+		border-radius: 0.5rem;
 
 		&:hover {
 			border-color: var(--accent-color);
@@ -21,14 +36,16 @@ form {
 	&.searchbar {
 		display: flex;
 		align-items: center;
-
+		
 		& > input {
 			height: 2rem;
+			background-color: var(--primary-light);
 		}
 
 		& > button {
 			border: none;
 			background-color: transparent;
+			color: var(--primary-dark);
 			margin: 0;
 			padding: 0;
 

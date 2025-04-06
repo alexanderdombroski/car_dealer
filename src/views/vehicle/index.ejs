@@ -3,7 +3,11 @@
 <aside>
     <%- vehicleTypeNav %>
 </aside>
-
-<% vehicles.forEach(vehicle => { %>
-    <%- include('../partials/vehicle-card.ejs', { vehicle }) %>
-<% }) %>
+<section>
+    <% if (vehicles.length === 0) { %>
+        <p>No vehicles found!</p>
+    <% } %>
+    <% vehicles.forEach(vehicle => { %>
+        <%- include('../partials/vehicle-card.ejs', { vehicle }) %>
+    <% }) %>
+</section>

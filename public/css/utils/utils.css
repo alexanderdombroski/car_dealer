@@ -1,1 +1,18 @@
-/* add very specific styles */
+
+.own-today {
+  background-color: var(--accent-color);
+  color: var(--primary-light);
+  font-size: 2rem;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  border: transparent 0.25rem solid;
+  text-decoration: none;
+  
+  &:hover {
+    border-color: var(--secondary-color);
+  }
+}
+
+.centered {
+  text-align: center;
+}

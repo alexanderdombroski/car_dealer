@@ -1,9 +1,12 @@
-<h1>Welcome to My Website</h1>
+<h1>Premier Auto Group</h1>
+<p>Check out our selection!</p>
 
 <aside>
     <%- vehicleTypeNav %>
 </aside>
+<section>
 
-<% vehicles.forEach(vehicle => { %>
-    <%- include('./partials/vehicle-card', { vehicle }) %>
-<% }) %>
+    <% vehicles.forEach(vehicle => { %>
+        <%- include('./partials/vehicle-card', { vehicle }) %>
+    <% }) %>
+</section>

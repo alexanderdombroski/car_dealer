@@ -2,10 +2,12 @@
     color-scheme: light dark;
 
     --primary-light: light-dark(#F2F2F2, #363636);
+    --primary-light-faded: light-dark(#D2D2D2, #565656);
+    --primary-light-transparent: light-dark(#f2f2f2A6, #363636A0);
     --primary-dark: light-dark(#363636, #F2F2F2);
-    --secondary-color: #F2C791;
-    --accent-color: #0073a1;
-    --accent2-color: #721c24;
+    --secondary-color: light-dark(#F2C791, #29231b);
+    --accent-color: light-dark(#0073a1, #5d94d0);
+    --accent2-color: light-dark(#721c24, #ddb7ba);
 
     --flash-success-text-color: #155724;
     --flash-error-text-color: var(--accent2-color);
