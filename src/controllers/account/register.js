@@ -1,5 +1,6 @@
 import express from "express";
 import { registerUser, userExists } from "../../models/account.js";
+import { validate } from "../../utils/string.js";
 
 /**
  * Render Register Page
@@ -18,12 +19,22 @@ export const registerPageController = async (_req, res) => {
  * @param {express.Response} res Express Response Object
  */
 export const registerHandlerController = async (req, res) => {
-    if (await userExists(req.body.username)) {
-        req.flash("error", "Username already taken!");
-        res.redirect("/account/register");
-        return;
+    if (req.body.password !== req.body.confirm_password) {
+        req.flash("error", "Passwords don't match!");
+        return res.redirect('/account/register');
     }
 
-    registerUser(req.body.first_name, req.body.last_name, req.body.username, req.body.email, req.body.password);
+    if (await userExists(req.body.username)) {
+        req.flash("error", "Username already taken!");
+        return res.redirect("/account/register");
+    }
+
+    registerUser(
+        validate(req.body.first_name), 
+        validate(req.body.last_name), 
+        validate(req.body.username), 
+        validate(req.body.email), 
+        validate(req.body.password)
+    );
     res.redirect("/account/login");
 };

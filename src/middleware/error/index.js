@@ -22,9 +22,7 @@ export const errorThrowing = async (req, res, next) => {
  * @param {express.NextFunction} next Express Next Function
  */
 export const errorCatching = async (err, _req, res, _next) => {
-    const statusCode = err.statusCode || err.status || 500;
-    
-    const code = statusCode < 500 ? 404 : 500;
+    const code = err.statusCode || err.status || 500;
     const message = err.message;
     return res.status(code).render(`error/${code}`, {title: code, code, message});
 };
