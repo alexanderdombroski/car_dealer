@@ -23,6 +23,9 @@ COPY package.json pnpm-lock.yaml ./
 # Install dependencies
 RUN pnpm install --frozen-lockfile
 
+# Explicitly build argon2
+RUN cd node_modules/argon2 && node-gyp rebuild
+
 # Remove build dependencies (to reduce image size)
 RUN apk del .gyp-build
 
