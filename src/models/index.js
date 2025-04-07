@@ -27,7 +27,7 @@ const pool = new pg.Pool({
   
 let dbClient;
 
-if (process.env.MODE.toLowerCase().includes('dev')) {
+if (process.env.MODE?.toLowerCase().includes('dev')) {
     /**
      * Instead of giving the user the original pool object, we can create a
      * wrapper that allows us to control what actions the user can take on the

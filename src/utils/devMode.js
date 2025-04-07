@@ -3,7 +3,7 @@ import * as ws from "ws";
 const mode = process.env.MODE;
 
 export default function setUpDevMode() {
-    if (mode.includes('dev')) {    
+    if (mode?.includes('dev')) {    
         try {
             const wsPort = process.env.DEV_PORT;
 
