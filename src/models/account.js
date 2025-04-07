@@ -7,9 +7,7 @@ import dbClient from "./index.js";
 export async function registerUser(first_name, last_name, username, email, password) {
     try {
         const now = new Date();
-        console.log("Hashin password")
         const passwordHash = await argon2.hash(password);
-        console.log(passwordHash)
 
         const query = `
             INSERT INTO public.user (first_name, last_name, username, email, password_hash, permission, created_at, updated_at)

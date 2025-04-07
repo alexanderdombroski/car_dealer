@@ -38,7 +38,7 @@ if (process.env.MODE?.toLowerCase().includes('dev')) {
         async query(text, params) {
             try {
                 const res = await pool.query(text, params);
-                // console.log('Executed query:', { text });
+                console.log('Executed query:', { text });
                 return res;
             } catch (error) {
                 console.error('Error in query:', { text });

@@ -13,7 +13,8 @@ const useSession = session({
     saveUninitialized: false,
     cookie: {
         httpOnly: true,
-        secure: mode === "production",
+        // secure: mode === "production",
+        secure: false,
         maxAge: 3 * 60 * 60 * 1000 // 3 hours
     }
 });

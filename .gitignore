@@ -19,3 +19,6 @@ node_modules
 UsedCarDealership.pdf
 FinalProjectRequirements.pdf
 TODO.md
+
+# Use if argon doesn't build?
+.pnpmfile.cjs

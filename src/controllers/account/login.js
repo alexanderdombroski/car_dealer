@@ -31,9 +31,9 @@ export const loginHandlerController = async (req, res) => {
             if (err) {
                 console.error("Error saving session:", err);
                 req.flash("error", "An error occurred during login.");
-                res.redirect("/account/login");
+                return res.redirect("/account/login");
             } else {
-                res.redirect("/account"); 
+                return res.redirect("/account"); 
             }
         });
         return;
