@@ -36,5 +36,7 @@ export const registerHandlerController = async (req, res) => {
         validate(req.body.email), 
         validate(req.body.password)
     );
+
+    req.flash("success", `Registered new user under the username: ${req.body.username}`);
     res.redirect("/account/login");
 };
