@@ -5,24 +5,31 @@ import dbClient from "./index.js";
  * Saves a new user to the database
  */
 export async function registerUser(first_name, last_name, username, email, password) {
-    const now = new Date();
-    const passwordHash = await argon2.hash(password);
+    try {
+        const now = new Date();
+        console.log("Hashin password")
+        const passwordHash = await argon2.hash(password);
+        console.log(passwordHash)
 
-    const query = `
-        INSERT INTO public.user (first_name, last_name, username, email, password_hash, permission, created_at, updated_at)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $7)
-        RETURNING user_id, username, email, first_name, last_name;
-    `;
+        const query = `
+            INSERT INTO public.user (first_name, last_name, username, email, password_hash, permission, created_at, updated_at)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $7)
+            RETURNING user_id, username, email, first_name, last_name;
+        `;
 
-    return await dbClient.query(query, [
-        first_name,
-        last_name,
-        username,
-        email,
-        passwordHash,
-        1,
-        now
-    ]);
+        return await dbClient.query(query, [
+            first_name,
+            last_name,
+            username,
+            email,
+            passwordHash,
+            1,
+            now
+        ]);
+    } catch (error) {
+        console.error("Error saving registering user to database: ", error);
+        throw new Error("Failed to register user due to a server error.");
+    }
 }
 
 /**

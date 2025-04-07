@@ -23,6 +23,7 @@ export const errorThrowing = async (req, res, next) => {
  */
 export const errorCatching = async (err, _req, res, _next) => {
     const code = err.statusCode || err.status || 500;
+    console.error(code, err.message);
     const message = err.message;
     return res.status(code).render(`error/${code}`, {title: code, code, message});
 };
